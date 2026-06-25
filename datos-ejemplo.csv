@@ -1,8 +1,8 @@
-cuenta,producto,acv,etapa,origen,cierre,next_step,ns_fecha,responsable,why_anything,why_now,why_bmc,cliente,telefono,respuesta_enviada
-Banca · Cuenta A,Plataforma de Automatización,680000,Negociación,auto,2026-07-30,Cerrar términos comerciales con Procurement,2026-06-20,Account Manager,verde,verde,amarillo,Contacto A,5491100000001,2026-06-12
-Retail · Cuenta B,Suite de Operaciones,540000,Validación,auto,2026-09-15,Coordinar POV técnico,2026-06-26,Preventas,verde,amarillo,verde,Contacto B,5491100000002,
-Telco · Cuenta C,Plataforma de Automatización,910000,Propuesta,marketing,2026-08-10,Construir caso de negocio con ROI,2026-06-22,Value Engineer,verde,verde,verde,Contacto C,5491100000003,2026-06-18
-Energía · Cuenta D,Suite de Observabilidad,430000,Calificación,bdr,2026-10-05,Discovery con el sponsor,2026-06-27,Account Manager,amarillo,rojo,amarillo,Contacto D,5491100000004,
-Salud · Cuenta E,Suite de Operaciones,760000,Validación,partner,2026-09-28,Enviar brief al partner,2026-06-19,Partner,verde,amarillo,amarillo,Contacto E,5491100000005,2026-06-22
-Gobierno · Cuenta F,Plataforma de Automatización,520000,Prospección,auto,2026-11-20,Mapear estructura de decisión,2026-07-01,Account Manager,amarillo,rojo,rojo,Contacto F,5491100000006,
-Logística · Cuenta I,Plataforma de Automatización,610000,Negociación,auto,2026-07-15,Agendar firma con el economic buyer,2026-06-28,Account Manager,verde,verde,verde,Contacto I,5491100000009,
+cuenta,producto,acv,etapa,origen,cierre,next_step,ns_fecha,responsable,why_anything,why_now,why_nosotros,cliente,telefono,respuesta_enviada
+Telecom Argentina,Plataforma de Automatización,950000,Negociación,auto,2026-07-30,Cerrar términos comerciales con Compras,2026-06-20,Account Manager,verde,verde,amarillo,Gabriel Sosa — CIO,5491140000011,2026-06-12
+BBVA Argentina,Suite de Operaciones,820000,Propuesta,auto,2026-08-25,Revisar adopción con Customer Success,2026-06-24,Customer Success,verde,verde,amarillo,Florencia Díaz — CTO,5491140000012,
+Banco Nación,Suite de Observabilidad,680000,Validación,partner,2026-09-28,Enviar brief al partner,2026-06-19,Partner,verde,amarillo,amarillo,Roberto Méndez — Director de Sistemas,5491140000013,2026-06-22
+Mercado Libre,Plataforma de Automatización,1100000,Propuesta,marketing,2026-08-10,Construir caso de negocio con ROI,2026-06-22,Value Engineer,verde,verde,verde,Nicolás Ferreyra — VP de Engineering,5491140000014,2026-06-18
+YPF,Suite de Observabilidad,540000,Calificación,bdr,2026-10-05,Discovery con el sponsor,2026-06-27,Account Manager,amarillo,rojo,amarillo,Andrés Vega — Gerente de TI,5491140000015,
+Coto,Plataforma de Automatización,430000,Prospección,auto,2026-11-20,Mapear estructura de decisión,2026-07-01,Account Manager,amarillo,rojo,rojo,Mariano Suárez — Gerente de Sistemas,5491140000016,
+Banco Supervielle,Suite de Operaciones,760000,Validación,auto,2026-09-15,Coordinar POV técnico,2026-06-26,Preventas,verde,amarillo,verde,Diego Herrera — CIO,5491140000017,
