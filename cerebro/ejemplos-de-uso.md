@@ -34,10 +34,10 @@ Casos de prueba para validar el asistente y para documentar en la sección **Met
 > **2. Calificación 3 Whys**
 > - ¿Por qué hacer algo? 🟢 — Dolor cuantificado (≈40 h/mes valuadas por el sponsor).
 > - ¿Por qué ahora? 🟢 — Compelling event con fecha: auditoría regulatoria de septiembre.
-> - ¿Por qué BMC? 🟡 — Tenés champion (el sponsor vende adentro), pero el economic buyer todavía compara con un competidor. *Para subir a verde:* ganar los criterios de decisión frente al Director de IT.
+> - ¿Por qué nosotros? 🟡 — Tenés champion (el sponsor vende adentro), pero el economic buyer todavía compara con un competidor. *Para subir a verde:* ganar los criterios de decisión frente al Director de IT.
 >
 > **3. Salud del deal**
-> 🟡 Amarillo. Los dos primeros Whys son sólidos; el deal se define en el "por qué BMC".
+> 🟡 Amarillo. Los dos primeros Whys son sólidos; el deal se define en el "por qué nosotros".
 >
 > **4. MEDDPICC**
 > Cubiertos: Metrics, Identify pain, Champion, Compelling event. Faltan: Decision criteria explícitos, confirmación del Economic buyer y mapa del Competition.
