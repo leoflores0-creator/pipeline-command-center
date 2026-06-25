@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Pipeline Command Center · v1</title>
+<title>Pipeline Command Center · v3</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
@@ -13,6 +13,7 @@
     --line:#2A3744; --line-2:#34465A;
     --text:#E6EDF3; --muted:#8B9AAB; --muted-2:#5E7184;
     --accent:#4DA3FF; --accent-dim:#2C5C8A;
+    --wa:#25D366; --wa-dim:rgba(37,211,102,.16);
     --red:#F2555A; --amber:#F5B544; --green:#36C28B;
     --red-dim:rgba(242,85,90,.16); --amber-dim:rgba(245,181,68,.16); --green-dim:rgba(54,194,139,.16);
     --r:10px;
@@ -23,52 +24,45 @@
   *{box-sizing:border-box}
   html,body{margin:0}
   body{
-    background:
-      radial-gradient(1200px 600px at 80% -10%, rgba(77,163,255,.06), transparent 60%),
-      var(--ink);
-    color:var(--text); font-family:var(--body); font-size:14px; line-height:1.45;
-    -webkit-font-smoothing:antialiased;
+    background:radial-gradient(1200px 600px at 80% -10%, rgba(77,163,255,.06), transparent 60%), var(--ink);
+    color:var(--text); font-family:var(--body); font-size:14px; line-height:1.45; -webkit-font-smoothing:antialiased;
   }
   a{color:inherit}
   .wrap{max-width:1320px; margin:0 auto; padding:22px 22px 60px}
 
-  /* ---------- top bar ---------- */
+  /* top bar */
   .topbar{display:flex; align-items:flex-end; justify-content:space-between; gap:18px; flex-wrap:wrap; padding-bottom:18px; border-bottom:1px solid var(--line)}
   .brand{display:flex; align-items:center; gap:13px}
-  .glyph{width:38px;height:38px;border-radius:9px;border:1px solid var(--line-2);
-    background:linear-gradient(160deg,var(--surface-3),var(--surface));
-    display:grid;place-items:center;position:relative;overflow:hidden}
-  .glyph::before{content:"";position:absolute;inset:0;background:
-    repeating-linear-gradient(90deg,transparent 0 6px,rgba(77,163,255,.10) 6px 7px)}
+  .glyph{width:38px;height:38px;border-radius:9px;border:1px solid var(--line-2);background:linear-gradient(160deg,var(--surface-3),var(--surface));display:grid;place-items:center;position:relative;overflow:hidden}
+  .glyph::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 6px,rgba(77,163,255,.10) 6px 7px)}
   .glyph span{font-family:var(--mono);font-weight:700;color:var(--accent);font-size:15px;z-index:1}
   .brand h1{font-family:var(--disp);font-size:18px;font-weight:600;letter-spacing:-.01em;margin:0;line-height:1.1}
   .brand .sub{color:var(--muted);font-size:12px;margin-top:2px}
-  .topmeta{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-  .pill{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--line);
-    border-radius:999px;padding:5px 11px;background:var(--surface)}
+  .topmeta{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .pill{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:5px 11px;background:var(--surface)}
   .pill b{color:var(--text);font-weight:700}
-  .btn{font-family:var(--body);font-weight:600;font-size:13px;cursor:pointer;border-radius:8px;
-    border:1px solid var(--accent-dim);background:linear-gradient(180deg,#2b517a,#1f3c5c);
-    color:#fff;padding:9px 15px;display:inline-flex;align-items:center;gap:8px;transition:filter .15s,transform .05s}
+  .btn{font-family:var(--body);font-weight:600;font-size:13px;cursor:pointer;border-radius:8px;border:1px solid var(--accent-dim);background:linear-gradient(180deg,#2b517a,#1f3c5c);color:#fff;padding:9px 14px;display:inline-flex;align-items:center;gap:7px;transition:filter .15s,transform .05s}
   .btn:hover{filter:brightness(1.12)}
   .btn:active{transform:translateY(1px)}
   .btn .spark{color:#9fd0ff}
+  .btn.ghost{background:var(--surface);border-color:var(--line-2);color:var(--text)}
+  .btn.ghost:hover{border-color:var(--accent-dim)}
+  .btn.wa{background:linear-gradient(180deg,#1fa556,#178c47);border-color:#178c47}
+  .btn.sm{padding:7px 11px;font-size:12px}
 
-  /* ---------- KPI strip ---------- */
+  /* KPI strip */
   .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:18px 0 6px}
   .kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 15px}
   .kpi .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
   .kpi .val{font-family:var(--mono);font-weight:700;font-size:21px;margin-top:7px;letter-spacing:-.01em}
   .kpi .foot{font-size:11px;color:var(--muted-2);margin-top:4px}
-  .kpi.is-cov{position:relative}
-  .cov-chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-weight:700;
-    font-size:11px;border-radius:999px;padding:3px 9px;margin-top:6px}
+  .cov-chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-weight:700;font-size:11px;border-radius:999px;padding:3px 9px;margin-top:6px}
   .dot{width:9px;height:9px;border-radius:50%;display:inline-block;flex:none}
 
-  /* ---------- instrument row ---------- */
+  /* instrument row */
   .inst{display:grid;grid-template-columns:330px 1fr;gap:14px;margin-top:14px}
   .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px}
-  .panel-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+  .panel-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:10px}
   .panel-h h2{font-family:var(--disp);font-size:13px;font-weight:600;letter-spacing:.02em;text-transform:uppercase;color:var(--muted);margin:0}
   .gauge-wrap{display:flex;flex-direction:column;align-items:center}
   .gauge-read{font-family:var(--mono);font-weight:700;font-size:40px;line-height:1;margin-top:-46px}
@@ -78,93 +72,116 @@
   .gap-note{margin-top:13px;border-top:1px dashed var(--line-2);padding-top:11px;font-size:12px;color:var(--muted);text-align:center}
   .gap-note b{font-family:var(--mono);color:var(--text)}
 
-  /* ---------- kanban ---------- */
+  /* kanban */
   .board-scroll{overflow-x:auto;padding-bottom:6px}
   .board{display:grid;grid-template-columns:repeat(6,minmax(196px,1fr));gap:12px;min-width:1100px}
   .col-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;padding:0 2px}
-  .col-h .name{font-family:var(--disp);font-size:12px;font-weight:600;letter-spacing:.01em}
+  .col-h .name{font-family:var(--disp);font-size:12px;font-weight:600}
   .col-h .meta{font-family:var(--mono);font-size:10.5px;color:var(--muted)}
   .col-bar{height:3px;border-radius:3px;background:var(--line-2);margin-bottom:10px;overflow:hidden}
   .col-bar i{display:block;height:100%;background:var(--accent)}
   .col-body{display:flex;flex-direction:column;gap:10px;min-height:40px}
-
-  .card{background:var(--surface-2);border:1px solid var(--line);border-radius:9px;padding:11px 11px 10px;cursor:pointer;
-    transition:border-color .15s,transform .05s;position:relative}
+  .card{background:var(--surface-2);border:1px solid var(--line);border-radius:9px;padding:11px;cursor:pointer;transition:border-color .15s,transform .05s;position:relative}
   .card:hover{border-color:var(--line-2)}
   .card:active{transform:translateY(1px)}
-  .card .acct{font-weight:600;font-size:13px;letter-spacing:-.01em}
+  .card .acct{font-weight:600;font-size:13px}
   .card .prod{color:var(--muted);font-size:11px;margin-top:1px}
   .card .acv{font-family:var(--mono);font-weight:700;font-size:14px;margin-top:8px}
   .card .row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:6px}
   .origin{font-size:9.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:2px 6px}
   .health{position:absolute;top:11px;right:11px}
   .whys{display:flex;gap:5px;margin-top:9px}
-  .why{display:flex;align-items:center;gap:4px;font-family:var(--mono);font-size:9.5px;color:var(--muted);
-    border:1px solid var(--line);border-radius:5px;padding:2px 5px;background:var(--surface)}
+  .why{display:flex;align-items:center;gap:4px;font-family:var(--mono);font-size:9.5px;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:2px 5px;background:var(--surface)}
   .next{margin-top:9px;border-top:1px solid var(--line);padding-top:8px}
   .next .ns{font-size:11.5px;line-height:1.35}
-  .next .nmeta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:6px}
+  .nmeta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:6px}
   .role{font-size:9.5px;border-radius:5px;padding:2px 6px;background:var(--surface-3);color:#cfe0f0;white-space:nowrap}
   .ns-date{font-family:var(--mono);font-size:10px;color:var(--muted)}
   .ns-date.overdue{color:var(--red)}
-  .ns-date.overdue::before{content:"⚠ ";}
+  .ns-date.overdue::before{content:"⚠ "}
 
-  /* ---------- bottom panels ---------- */
-  .bottom{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+  /* bottom panels */
+  .bottom{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:14px}
   .nslist{display:flex;flex-direction:column}
   .nsrow{display:flex;align-items:center;gap:11px;padding:9px 2px;border-bottom:1px solid var(--line)}
   .nsrow:last-child{border-bottom:0}
-  .nsrow .d{font-family:var(--mono);font-size:11px;color:var(--muted);width:62px;flex:none}
+  .nsrow .d{font-family:var(--mono);font-size:11px;color:var(--muted);width:54px;flex:none}
   .nsrow .d.overdue{color:var(--red)}
   .nsrow .t{flex:1;font-size:12.5px}
   .nsrow .t small{display:block;color:var(--muted);font-size:11px}
   .eco{display:flex;flex-direction:column;gap:8px}
   .ecorow{display:flex;align-items:center;gap:11px}
-  .ecorow .rn{width:148px;flex:none;font-size:12.5px;font-weight:500}
+  .ecorow .rn{width:130px;flex:none;font-size:12.5px}
   .ecotrack{flex:1;height:8px;border-radius:6px;background:var(--surface-3);overflow:hidden}
   .ecotrack i{display:block;height:100%;background:linear-gradient(90deg,var(--accent-dim),var(--accent))}
-  .ecorow .c{font-family:var(--mono);font-size:11px;color:var(--muted);width:26px;text-align:right}
+  .ecorow .c{font-family:var(--mono);font-size:11px;color:var(--muted);width:22px;text-align:right}
+  /* pending replies */
+  .prow{display:flex;align-items:center;gap:10px;padding:9px 2px;border-bottom:1px solid var(--line)}
+  .prow:last-child{border-bottom:0}
+  .prow .age{font-family:var(--mono);font-size:11px;width:48px;flex:none;text-align:center;border-radius:5px;padding:3px 0}
+  .prow .t{flex:1;font-size:12.5px}
+  .prow .t small{display:block;color:var(--muted);font-size:11px}
+  .iconbtn{cursor:pointer;border:1px solid var(--line-2);background:var(--surface-3);color:var(--text);border-radius:6px;width:28px;height:28px;font-size:13px;flex:none}
+  .iconbtn:hover{border-color:var(--accent-dim)}
+  .empty{color:var(--muted-2);font-size:12px;padding:8px 2px}
 
-  /* ---------- tooltip ---------- */
-  .tt{position:fixed;z-index:60;max-width:260px;background:#0a0f16;border:1px solid var(--line-2);
-    border-radius:8px;padding:9px 11px;font-size:11.5px;color:var(--text);pointer-events:none;opacity:0;
-    transition:opacity .12s;box-shadow:0 12px 30px rgba(0,0,0,.5)}
+  /* tooltip */
+  .tt{position:fixed;z-index:60;max-width:260px;background:#0a0f16;border:1px solid var(--line-2);border-radius:8px;padding:9px 11px;font-size:11.5px;color:var(--text);pointer-events:none;opacity:0;transition:opacity .12s;box-shadow:0 12px 30px rgba(0,0,0,.5)}
   .tt b{font-family:var(--mono);font-size:11px}
 
-  /* ---------- modal ---------- */
-  .ovl{position:fixed;inset:0;background:rgba(6,10,15,.66);backdrop-filter:blur(3px);display:none;
-    align-items:center;justify-content:center;padding:20px;z-index:80}
+  /* modal */
+  .ovl{position:fixed;inset:0;background:rgba(6,10,15,.66);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:20px;z-index:80}
   .ovl.open{display:flex}
-  .modal{background:var(--surface);border:1px solid var(--line-2);border-radius:14px;max-width:560px;width:100%;
-    max-height:88vh;overflow:auto;padding:22px}
+  .modal{background:var(--surface);border:1px solid var(--line-2);border-radius:14px;max-width:580px;width:100%;max-height:88vh;overflow:auto;padding:22px}
+  .modal.wide{max-width:680px}
   .modal h3{font-family:var(--disp);margin:0 0 3px;font-size:18px}
-  .modal .mh{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
-  .x{cursor:pointer;border:1px solid var(--line);background:var(--surface-2);color:var(--muted);border-radius:7px;
-    width:30px;height:30px;flex:none;font-size:15px}
+  .mh{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
+  .mh .sub{color:var(--muted);font-size:12px;margin-top:3px}
+  .x{cursor:pointer;border:1px solid var(--line);background:var(--surface-2);color:var(--muted);border-radius:7px;width:30px;height:30px;flex:none;font-size:15px}
   .x:hover{color:var(--text)}
-  .ai-badge{display:inline-flex;align-items:center;gap:7px;font-size:11px;color:var(--accent);
-    border:1px solid var(--accent-dim);border-radius:999px;padding:4px 10px;margin-bottom:14px}
-  .ai-block{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:13px 14px;margin-bottom:11px}
-  .ai-block .ttl{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:7px}
-  .ai-block p{margin:0 0 7px;font-size:13px}
-  .ai-block p:last-child{margin-bottom:0}
-  .ai-note{font-size:11.5px;color:var(--muted-2);line-height:1.5;border-top:1px dashed var(--line-2);padding-top:11px}
-  .meddpicc{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:4px}
-  .mp{display:flex;align-items:center;gap:8px;font-size:12px;background:var(--surface-2);border:1px solid var(--line);border-radius:7px;padding:7px 9px}
+  .ai-badge{display:inline-flex;align-items:center;gap:7px;font-size:11px;color:var(--accent);border:1px solid var(--accent-dim);border-radius:999px;padding:4px 10px;margin-bottom:14px}
+  .block{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:13px 14px;margin-bottom:11px}
+  .block .ttl{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:7px}
+  .block p{margin:0 0 7px;font-size:13px}
+  .block p:last-child{margin-bottom:0}
+  .note{font-size:11.5px;color:var(--muted-2);line-height:1.5;border-top:1px dashed var(--line-2);padding-top:11px;margin-top:4px}
+  .meddpicc{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+  .mp{display:flex;align-items:center;gap:8px;font-size:12px;background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:7px 9px}
   .mp .lt{font-family:var(--mono);font-weight:700;width:18px;color:var(--muted)}
   .whyrow{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
   .whyrow:last-child{border-bottom:0}
   .whyrow .ql{font-size:13px;font-weight:600}
   .whyrow small{color:var(--muted);display:block;margin-top:2px;font-size:11.5px}
+  .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+
+  /* compose / form fields */
+  label.fld{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:11px 0 5px}
+  .inp,.ta{width:100%;background:var(--surface-2);border:1px solid var(--line-2);border-radius:8px;color:var(--text);font-family:var(--body);font-size:13px;padding:9px 11px}
+  .ta{min-height:150px;resize:vertical;line-height:1.5}
+  .inp:focus,.ta:focus{outline:none;border-color:var(--accent-dim)}
+  .attach{display:flex;align-items:center;gap:8px;font-size:12px;background:var(--accent-dim);color:#dcebff;border-radius:7px;padding:7px 10px;margin-top:10px}
+  .attach b{color:#fff}
+  .attach .rm{margin-left:auto;cursor:pointer;color:#cfe0f0}
+
+  /* material library */
+  .matfilters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+  .chip{cursor:pointer;font-size:11.5px;border:1px solid var(--line-2);background:var(--surface-2);color:var(--muted);border-radius:999px;padding:5px 11px}
+  .chip.on{background:var(--accent-dim);border-color:var(--accent-dim);color:#fff}
+  .mat{display:flex;align-items:center;gap:11px;padding:11px;border:1px solid var(--line);border-radius:9px;margin-bottom:9px;background:var(--surface-2)}
+  .mat .ic{width:34px;height:34px;border-radius:8px;display:grid;place-items:center;font-size:15px;flex:none;background:var(--surface-3)}
+  .mat .info{flex:1;min-width:0}
+  .mat .info .tt2{font-size:13px;font-weight:600}
+  .mat .info small{color:var(--muted);font-size:11px}
+  .mat .mact{display:flex;gap:6px;flex:none}
+
+  /* toast */
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:#0a0f16;border:1px solid var(--line-2);border-radius:10px;padding:11px 16px;font-size:13px;color:var(--text);opacity:0;transition:.25s;z-index:120;box-shadow:0 14px 36px rgba(0,0,0,.55)}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
   footer{margin-top:26px;color:var(--muted-2);font-size:11px;text-align:center;line-height:1.7}
   footer b{color:var(--muted)}
 
-  @media (max-width:880px){
-    .kpis{grid-template-columns:repeat(2,1fr)}
-    .inst{grid-template-columns:1fr}
-    .bottom{grid-template-columns:1fr}
-  }
+  @media (max-width:980px){.kpis{grid-template-columns:repeat(2,1fr)}.inst{grid-template-columns:1fr}.bottom{grid-template-columns:1fr}}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
   :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 </style>
@@ -177,13 +194,15 @@
       <div class="glyph"><span>3×</span></div>
       <div>
         <h1>Pipeline Command Center</h1>
-        <div class="sub">Gestión y seguimiento de oportunidades · Cuentas estratégicas</div>
+        <div class="sub">Gestión, seguimiento y activación de oportunidades · Cuentas estratégicas</div>
       </div>
     </div>
     <div class="topmeta">
       <span class="pill">AM · <b>A. Vendedor</b></span>
-      <span class="pill">Período · <b>FY26 (anual)</b></span>
-      <span class="pill">Métrica · <b>ACV</b></span>
+      <span class="pill">FY26 · <b>ACV</b></span>
+      <input type="file" id="csvInput" accept=".csv" style="display:none" />
+      <button class="btn ghost sm" id="csvBtn" title="Importá un reporte exportado de Salesforce (.csv)">↑ Importar CSV</button>
+      <button class="btn ghost sm" id="matBtn">Biblioteca MKT</button>
       <button class="btn" id="aiBtn"><span class="spark">✦</span> Generar con IA</button>
     </div>
   </div>
@@ -198,7 +217,7 @@
     <div class="panel">
       <div class="panel-h">
         <h2>Pipeline por etapa</h2>
-        <span class="pill">Vista · <b>Kanban</b></span>
+        <span class="pill" id="srcPill">Fuente · <b>demo</b></span>
       </div>
       <div class="board-scroll"><div class="board" id="board"></div></div>
     </div>
@@ -210,315 +229,424 @@
       <div class="nslist" id="nslist"></div>
     </div>
     <div class="panel">
-      <div class="panel-h"><h2>Tareas por rol del ecosistema</h2></div>
+      <div class="panel-h"><h2>Respuestas pendientes</h2><span class="pill">cliente</span></div>
+      <div class="nslist" id="pending"></div>
+    </div>
+    <div class="panel">
+      <div class="panel-h"><h2>Tareas por rol</h2></div>
       <div class="eco" id="eco"></div>
     </div>
   </div>
 
   <footer>
-    Maqueta funcional · datos <b>ficticios y anonimizados</b> · IA <b>asistida y bajo control humano</b><br/>
+    Maqueta funcional · datos <b>ficticios y anonimizados</b> · sin backend · IA y envíos <b>bajo control humano</b><br/>
     Trabajo Final Integrador — Diplomatura en IA Aplicada a Entornos Digitales de Gestión · FCE-UBA
   </footer>
 </div>
 
 <div class="tt" id="tt"></div>
+<div class="toast" id="toast"></div>
 
 <!-- AI modal -->
-<div class="ovl" id="aiOvl">
-  <div class="modal">
-    <div class="mh">
-      <div>
-        <div class="ai-badge">✦ Capa de IA generativa</div>
-        <h3 id="aiTitle">Next step sugerido</h3>
-      </div>
-      <button class="x" data-close>✕</button>
-    </div>
-    <div id="aiBody"></div>
-  </div>
-</div>
+<div class="ovl" id="aiOvl"><div class="modal">
+  <div class="mh"><div><div class="ai-badge">✦ Capa de IA generativa</div><h3 id="aiTitle">Next step sugerido</h3></div><button class="x" data-close>✕</button></div>
+  <div id="aiBody"></div>
+</div></div>
 
 <!-- card detail modal -->
-<div class="ovl" id="cardOvl">
-  <div class="modal">
-    <div class="mh">
-      <div>
-        <h3 id="cdTitle"></h3>
-        <div class="sub" id="cdSub" style="color:var(--muted);font-size:12px;margin-top:3px"></div>
-      </div>
-      <button class="x" data-close>✕</button>
-    </div>
-    <div id="cdBody"></div>
+<div class="ovl" id="cardOvl"><div class="modal">
+  <div class="mh"><div><h3 id="cdTitle"></h3><div class="sub" id="cdSub"></div></div><button class="x" data-close>✕</button></div>
+  <div id="cdBody"></div>
+</div></div>
+
+<!-- material library modal -->
+<div class="ovl" id="matOvl"><div class="modal wide">
+  <div class="mh"><div><h3>Biblioteca de materiales</h3><div class="sub" id="matSub">Whitepapers, datasheets, videos y casos de éxito</div></div><button class="x" data-close>✕</button></div>
+  <div class="matfilters" id="matFilters"></div>
+  <div id="matList"></div>
+</div></div>
+
+<!-- compose modal (email / whatsapp) -->
+<div class="ovl" id="composeOvl"><div class="modal">
+  <div class="mh"><div><h3 id="cpTitle"></h3><div class="sub" id="cpSub"></div></div><button class="x" data-close>✕</button></div>
+  <div id="cpFields"></div>
+  <div class="attach" id="cpAttach" style="display:none"></div>
+  <div class="actions" style="margin-top:14px">
+    <button class="btn" id="cpSend"></button>
+    <button class="btn ghost" id="cpCopy">Copiar texto</button>
   </div>
-</div>
+  <div class="note">Esta maqueta no envía sola: abre tu correo o tu WhatsApp con el mensaje listo para que lo revises y mandes vos. Control humano por diseño.</div>
+</div></div>
 
 <script>
-/* ===== configuración de negocio (editable en un solo lugar) ===== */
-const CONFIG = {
-  quota: 1500000,                 // quota anual en ACV (USD)
-  coverageBands: { red: 3, green: 4 },  // 🔴 <3x · 🟡 3–4x · 🟢 ≥4x
-  today: new Date('2026-06-24')
+/* ===== configuración de negocio ===== */
+const CONFIG = { quota:1500000, coverageBands:{red:3,green:4}, today:new Date('2026-06-24') };
+const STAGES=['Prospección','Calificación','Validación','Propuesta','Negociación','Cierre'];
+const STAGE_OPEN=['Prospección','Calificación','Validación','Propuesta','Negociación'];
+const WHY_LABELS={
+  anything:{code:'¿Por qué hacer algo?',tip:{green:'Dolor confirmado y cuantificado por el cliente.',amber:'Dolor identificado pero sin cuantificar.',red:'Solo un supuesto del vendedor; sin validar.'}},
+  now:{code:'¿Por qué ahora?',tip:{green:'Compelling event con fecha (cierre fiscal, vencimiento, auditoría).',amber:'Interés con urgencia blanda, sin fecha.',red:'Sin urgencia: "algún día".'}},
+  bmc:{code:'¿Por qué BMC?',tip:{green:'Criterios a favor + champion que vende internamente.',amber:'Compitiendo de igual a igual, sin champion claro.',red:'El cliente no percibe diferencia.'}}
 };
+const WHY_SHORT={anything:'DO',now:'NOW',bmc:'BMC'};
+const ROLES=['Preventas','Value Engineer','Marketing','Customer Success','Partner','BDR','Account Manager'];
+const ROLE_EMAIL={Preventas:'preventas@miempresa.com','Value Engineer':'value.engineering@miempresa.com',Marketing:'marketing@miempresa.com','Customer Success':'cs@miempresa.com',Partner:'partners@miempresa.com',BDR:'bdr@miempresa.com','Account Manager':'mi.equipo@miempresa.com'};
 
-const STAGES = ['Prospección','Calificación','Validación','Propuesta','Negociación','Cierre'];
-const STAGE_OPEN = ['Prospección','Calificación','Validación','Propuesta','Negociación']; // suman a Coverage
-
-const WHY_LABELS = {
-  anything: { code:'¿Por qué hacer algo?', tip:{
-    green:'Dolor confirmado y cuantificado por el cliente.',
-    amber:'Dolor identificado pero sin cuantificar, o lo dijo un contacto sin poder.',
-    red:'Solo es un supuesto del vendedor; sin validar.' } },
-  now: { code:'¿Por qué ahora?', tip:{
-    green:'Compelling event con fecha (cierre fiscal, vencimiento, auditoría).',
-    amber:'Interés con urgencia blanda, sin fecha definida.',
-    red:'Sin urgencia: "algún día".' } },
-  bmc: { code:'¿Por qué BMC?', tip:{
-    green:'Criterios de decisión a favor + champion que vende internamente.',
-    amber:'Compitiendo de igual a igual, sin champion claro.',
-    red:'El cliente no percibe diferencia frente al status quo.' } }
-};
-const WHY_SHORT = { anything:'DO', now:'NOW', bmc:'BMC' };
-const ROLES = ['Preventas','Value Engineer','Marketing','Customer Success','Partner','BDR','Account Manager'];
-
-/* ===== datos ficticios y anonimizados ===== */
-const DEALS = [
-  { acct:'Banca · Cuenta A', prod:'Plataforma de Automatización', acv:680000, stage:'Negociación', origin:'auto',
-    close:'2026-07-30', whys:{anything:'green',now:'green',bmc:'amber'},
-    next:'Cerrar términos comerciales con Procurement', nsDate:'2026-06-20', role:'Account Manager',
-    meddpicc:{M:1,E:1,D:1,Dp:0,I:1,P:1,C:1,Co:1} },
-  { acct:'Retail · Cuenta B', prod:'Suite de Operaciones', acv:540000, stage:'Validación', origin:'auto',
-    close:'2026-09-15', whys:{anything:'green',now:'amber',bmc:'green'},
-    next:'Coordinar POV técnico con el equipo de infraestructura', nsDate:'2026-06-26', role:'Preventas',
-    meddpicc:{M:1,E:0,D:1,Dp:0,I:1,P:1,C:1,Co:0} },
-  { acct:'Telco · Cuenta C', prod:'Plataforma de Automatización', acv:910000, stage:'Propuesta', origin:'marketing',
-    close:'2026-08-10', whys:{anything:'green',now:'green',bmc:'green'},
-    next:'Construir caso de negocio con ROI cuantificado', nsDate:'2026-06-22', role:'Value Engineer',
-    meddpicc:{M:1,E:1,D:1,Dp:1,I:1,P:1,C:1,Co:1} },
-  { acct:'Energía · Cuenta D', prod:'Suite de Observabilidad', acv:430000, stage:'Calificación', origin:'bdr',
-    close:'2026-10-05', whys:{anything:'amber',now:'red',bmc:'amber'},
-    next:'Discovery con el sponsor para validar el compelling event', nsDate:'2026-06-27', role:'Account Manager',
-    meddpicc:{M:0,E:0,D:0,Dp:0,I:1,P:0,C:0,Co:0} },
-  { acct:'Salud · Cuenta E', prod:'Suite de Operaciones', acv:760000, stage:'Validación', origin:'partner',
-    close:'2026-09-28', whys:{anything:'green',now:'amber',bmc:'amber'},
-    next:'Enviar brief al partner para taller conjunto', nsDate:'2026-06-19', role:'Partner',
-    meddpicc:{M:1,E:0,D:1,Dp:0,I:1,P:0,C:1,Co:0} },
-  { acct:'Gobierno · Cuenta F', prod:'Plataforma de Automatización', acv:520000, stage:'Prospección', origin:'auto',
-    close:'2026-11-20', whys:{anything:'amber',now:'red',bmc:'red'},
-    next:'Investigar estructura de decisión y mapear stakeholders', nsDate:'2026-07-01', role:'Account Manager',
-    meddpicc:{M:0,E:0,D:0,Dp:0,I:0,P:0,C:0,Co:0} },
-  { acct:'Manufactura · Cuenta G', prod:'Suite de Observabilidad', acv:340000, stage:'Calificación', origin:'marketing',
-    close:'2026-10-18', whys:{anything:'amber',now:'amber',bmc:'green'},
-    next:'Webinar de nurturing + agendar reunión ejecutiva', nsDate:'2026-06-30', role:'Marketing',
-    meddpicc:{M:0,E:0,D:1,Dp:0,I:1,P:0,C:1,Co:0} },
-  { acct:'Seguros · Cuenta H', prod:'Suite de Operaciones', acv:470000, stage:'Propuesta', origin:'auto',
-    close:'2026-08-25', whys:{anything:'green',now:'green',bmc:'amber'},
-    next:'Revisar adopción con Customer Success para asegurar expansión', nsDate:'2026-06-24', role:'Customer Success',
-    meddpicc:{M:1,E:1,D:1,Dp:0,I:1,P:1,C:1,Co:0} },
-  { acct:'Logística · Cuenta I', prod:'Plataforma de Automatización', acv:610000, stage:'Negociación', origin:'auto',
-    close:'2026-07-15', whys:{anything:'green',now:'green',bmc:'green'},
-    next:'Agendar firma con el economic buyer', nsDate:'2026-06-28', role:'Account Manager',
-    meddpicc:{M:1,E:1,D:1,Dp:1,I:1,P:1,C:1,Co:1} },
+/* ===== materiales de MKT (ficticios) ===== */
+const MATERIALS=[
+  {t:'Automatización de operaciones: guía 2026',cat:'Whitepaper',ic:'📄',tags:['todas'],url:'https://recursos.miempresa.com/wp-automatizacion'},
+  {t:'Ficha técnica · Plataforma de Automatización',cat:'Datasheet',ic:'📑',tags:['automatización'],url:'https://recursos.miempresa.com/ds-automatizacion'},
+  {t:'Ficha técnica · Suite de Observabilidad',cat:'Datasheet',ic:'📑',tags:['observabilidad'],url:'https://recursos.miempresa.com/ds-observabilidad'},
+  {t:'Demo 5 min · Suite de Operaciones',cat:'Video',ic:'▶',tags:['operaciones'],url:'https://recursos.miempresa.com/video-operaciones'},
+  {t:'Caso de éxito · Banca: -30% incidentes',cat:'Caso de éxito',ic:'★',tags:['banca'],url:'https://recursos.miempresa.com/caso-banca'},
+  {t:'Caso de éxito · Telco: ROI en 6 meses',cat:'Caso de éxito',ic:'★',tags:['telco'],url:'https://recursos.miempresa.com/caso-telco'},
+  {t:'Seguridad y cumplimiento en la nube',cat:'Whitepaper',ic:'📄',tags:['todas'],url:'https://recursos.miempresa.com/wp-seguridad'},
 ];
 
-/* ===== helpers ===== */
-const SELF = ['auto']; // orígenes que cuentan como "pipe generado por mí"
-const RANK = { red:0, amber:1, green:2 };
-const fmtUSD = n => '$'+(n/1000).toLocaleString('en-US',{maximumFractionDigits:0})+'K';
-const fmtUSDfull = n => '$'+n.toLocaleString('en-US');
-const colorOf = s => s==='green'?'var(--green)':s==='amber'?'var(--amber)':'var(--red)';
-const health = d => Object.values(d.whys).reduce((w,v)=> RANK[v]<RANK[w]?v:w, 'green'); // el Why más débil
-const isOpen = d => STAGE_OPEN.includes(d.stage);
-const daysFromToday = iso => Math.round((new Date(iso)-CONFIG.today)/86400000);
-const isOverdue = iso => new Date(iso) < CONFIG.today;
-const fmtDate = iso => new Date(iso).toLocaleDateString('es-AR',{day:'2-digit',month:'short'});
+/* ===== datos demo (ficticios y anonimizados) ===== */
+const DEMO=[
+  {acct:'Banca · Cuenta A',prod:'Plataforma de Automatización',acv:680000,stage:'Negociación',origin:'auto',close:'2026-07-30',whys:{anything:'green',now:'green',bmc:'amber'},next:'Cerrar términos comerciales con Procurement',nsDate:'2026-06-20',role:'Account Manager',cliente:'Contacto · Cuenta A',tel:'5491100000001',sent:'2026-06-12',meddpicc:{M:1,E:1,D:1,Dp:0,I:1,P:1,C:1,Co:1}},
+  {acct:'Retail · Cuenta B',prod:'Suite de Operaciones',acv:540000,stage:'Validación',origin:'auto',close:'2026-09-15',whys:{anything:'green',now:'amber',bmc:'green'},next:'Coordinar POV técnico con infraestructura',nsDate:'2026-06-26',role:'Preventas',cliente:'Contacto · Cuenta B',tel:'5491100000002',sent:null,meddpicc:{M:1,E:0,D:1,Dp:0,I:1,P:1,C:1,Co:0}},
+  {acct:'Telco · Cuenta C',prod:'Plataforma de Automatización',acv:910000,stage:'Propuesta',origin:'marketing',close:'2026-08-10',whys:{anything:'green',now:'green',bmc:'green'},next:'Construir caso de negocio con ROI cuantificado',nsDate:'2026-06-22',role:'Value Engineer',cliente:'Contacto · Cuenta C',tel:'5491100000003',sent:'2026-06-18',meddpicc:{M:1,E:1,D:1,Dp:1,I:1,P:1,C:1,Co:1}},
+  {acct:'Energía · Cuenta D',prod:'Suite de Observabilidad',acv:430000,stage:'Calificación',origin:'bdr',close:'2026-10-05',whys:{anything:'amber',now:'red',bmc:'amber'},next:'Discovery con el sponsor por el compelling event',nsDate:'2026-06-27',role:'Account Manager',cliente:'Contacto · Cuenta D',tel:'5491100000004',sent:null,meddpicc:{M:0,E:0,D:0,Dp:0,I:1,P:0,C:0,Co:0}},
+  {acct:'Salud · Cuenta E',prod:'Suite de Operaciones',acv:760000,stage:'Validación',origin:'partner',close:'2026-09-28',whys:{anything:'green',now:'amber',bmc:'amber'},next:'Enviar brief al partner para taller conjunto',nsDate:'2026-06-19',role:'Partner',cliente:'Contacto · Cuenta E',tel:'5491100000005',sent:'2026-06-22',meddpicc:{M:1,E:0,D:1,Dp:0,I:1,P:0,C:1,Co:0}},
+  {acct:'Gobierno · Cuenta F',prod:'Plataforma de Automatización',acv:520000,stage:'Prospección',origin:'auto',close:'2026-11-20',whys:{anything:'amber',now:'red',bmc:'red'},next:'Mapear estructura de decisión y stakeholders',nsDate:'2026-07-01',role:'Account Manager',cliente:'Contacto · Cuenta F',tel:'5491100000006',sent:null,meddpicc:{M:0,E:0,D:0,Dp:0,I:0,P:0,C:0,Co:0}},
+  {acct:'Manufactura · Cuenta G',prod:'Suite de Observabilidad',acv:340000,stage:'Calificación',origin:'marketing',close:'2026-10-18',whys:{anything:'amber',now:'amber',bmc:'green'},next:'Webinar de nurturing + reunión ejecutiva',nsDate:'2026-06-30',role:'Marketing',cliente:'Contacto · Cuenta G',tel:'5491100000007',sent:null,meddpicc:{M:0,E:0,D:1,Dp:0,I:1,P:0,C:1,Co:0}},
+  {acct:'Seguros · Cuenta H',prod:'Suite de Operaciones',acv:470000,stage:'Propuesta',origin:'auto',close:'2026-08-25',whys:{anything:'green',now:'green',bmc:'amber'},next:'Revisar adopción con Customer Success',nsDate:'2026-06-24',role:'Customer Success',cliente:'Contacto · Cuenta H',tel:'5491100000008',sent:null,meddpicc:{M:1,E:1,D:1,Dp:0,I:1,P:1,C:1,Co:0}},
+  {acct:'Logística · Cuenta I',prod:'Plataforma de Automatización',acv:610000,stage:'Negociación',origin:'auto',close:'2026-07-15',whys:{anything:'green',now:'green',bmc:'green'},next:'Agendar firma con el economic buyer',nsDate:'2026-06-28',role:'Account Manager',cliente:'Contacto · Cuenta I',tel:'5491100000009',sent:null,meddpicc:{M:1,E:1,D:1,Dp:1,I:1,P:1,C:1,Co:1}},
+];
+let DEALS = DEMO.map(d=>({...d}));
 
-const openDeals = DEALS.filter(isOpen);
-const pipeTotal = openDeals.reduce((s,d)=>s+d.acv,0);
-const pipeSelf  = openDeals.filter(d=>SELF.includes(d.origin)).reduce((s,d)=>s+d.acv,0);
-const coverage  = pipeTotal / CONFIG.quota;
-const covState  = coverage < CONFIG.coverageBands.red ? 'red'
-                : coverage < CONFIG.coverageBands.green ? 'amber' : 'green';
-const covLabel  = {red:'Sub-cubierto',amber:'Cubierto sin colchón',green:'Cubierto con colchón'}[covState];
+/* ===== helpers ===== */
+const SELF=['auto'];
+const RANK={red:0,amber:1,green:2};
+const fmtUSD=n=>'$'+(n/1000).toLocaleString('en-US',{maximumFractionDigits:0})+'K';
+const fmtUSDfull=n=>'$'+n.toLocaleString('en-US');
+const colorOf=s=>s==='green'?'var(--green)':s==='amber'?'var(--amber)':'var(--red)';
+const health=d=>Object.values(d.whys).reduce((w,v)=>RANK[v]<RANK[w]?v:w,'green');
+const isOpen=d=>STAGE_OPEN.includes(d.stage);
+const isOverdue=iso=>new Date(iso)<CONFIG.today;
+const fmtDate=iso=>new Date(iso).toLocaleDateString('es-AR',{day:'2-digit',month:'short'});
+const daysSince=iso=>Math.round((CONFIG.today-new Date(iso))/86400000);
+const originLabel=o=>({auto:'Auto-generado',marketing:'Marketing',bdr:'BDR',partner:'Partner'}[o]||o);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+let openDeals,pipeTotal,pipeSelf,coverage,covState,covLabel;
+function recompute(){
+  openDeals=DEALS.filter(isOpen);
+  pipeTotal=openDeals.reduce((s,d)=>s+d.acv,0);
+  pipeSelf=openDeals.filter(d=>SELF.includes(d.origin)).reduce((s,d)=>s+d.acv,0);
+  coverage=pipeTotal/CONFIG.quota;
+  covState=coverage<CONFIG.coverageBands.red?'red':coverage<CONFIG.coverageBands.green?'amber':'green';
+  covLabel={red:'Sub-cubierto',amber:'Cubierto sin colchón',green:'Cubierto con colchón'}[covState];
+}
 
 /* ===== KPIs ===== */
 function renderKPIs(){
-  const selfPct = Math.round(pipeSelf/pipeTotal*100);
-  const gapTo = (CONFIG.coverageBands.green*CONFIG.quota) - pipeTotal;
-  const items = [
-    {lbl:'Quota anual', val:fmtUSD(CONFIG.quota), foot:'Objetivo de cierre ACV'},
-    {lbl:'Pipe total abierto', val:fmtUSD(pipeTotal), foot:openDeals.length+' oportunidades activas'},
-    {lbl:'Pipe generado por mí', val:fmtUSD(pipeSelf), foot:selfPct+'% del pipe · self-sourced'},
-    {lbl:'Coverage', cov:true},
-    {lbl:'Brecha a ≥4x', val:(gapTo>0?fmtUSD(gapTo):'—'), foot:gapTo>0?'ACV faltante para colchón':'Colchón alcanzado'},
+  const selfPct=pipeTotal?Math.round(pipeSelf/pipeTotal*100):0;
+  const gapTo=(CONFIG.coverageBands.green*CONFIG.quota)-pipeTotal;
+  const items=[
+    {lbl:'Quota anual',val:fmtUSD(CONFIG.quota),foot:'Objetivo de cierre ACV'},
+    {lbl:'Pipe total abierto',val:fmtUSD(pipeTotal),foot:openDeals.length+' oportunidades activas'},
+    {lbl:'Pipe generado por mí',val:fmtUSD(pipeSelf),foot:selfPct+'% del pipe · self-sourced'},
+    {lbl:'Coverage',cov:true},
+    {lbl:'Brecha a ≥4x',val:gapTo>0?fmtUSD(gapTo):'—',foot:gapTo>0?'ACV faltante para colchón':'Colchón alcanzado'},
   ];
-  document.getElementById('kpis').innerHTML = items.map(it=>{
-    if(it.cov){
-      return `<div class="kpi is-cov"><div class="lbl">${it.lbl}</div>
-        <div class="val">${coverage.toFixed(1)}x</div>
-        <div class="cov-chip" style="background:${covState==='green'?'var(--green-dim)':covState==='amber'?'var(--amber-dim)':'var(--red-dim)'};color:${colorOf(covState)}">
-          <i class="dot" style="background:${colorOf(covState)}"></i>${covLabel}</div></div>`;
-    }
+  document.getElementById('kpis').innerHTML=items.map(it=>{
+    if(it.cov){const bg=covState==='green'?'var(--green-dim)':covState==='amber'?'var(--amber-dim)':'var(--red-dim)';
+      return `<div class="kpi"><div class="lbl">${it.lbl}</div><div class="val">${coverage.toFixed(1)}x</div>
+      <div class="cov-chip" style="background:${bg};color:${colorOf(covState)}"><i class="dot" style="background:${colorOf(covState)}"></i>${covLabel}</div></div>`;}
     return `<div class="kpi"><div class="lbl">${it.lbl}</div><div class="val">${it.val}</div><div class="foot">${it.foot}</div></div>`;
   }).join('');
 }
 
-/* ===== gauge (semicírculo) ===== */
-function polar(cx,cy,r,deg){const a=(deg-180)*Math.PI/180;return [cx+r*Math.cos(a), cy+r*Math.sin(a)];}
-function arc(cx,cy,r,a0,a1){
-  const [x0,y0]=polar(cx,cy,r,a0), [x1,y1]=polar(cx,cy,r,a1);
-  const large = (a1-a0)>180?1:0;
-  return `M ${x0} ${y0} A ${r} ${r} 0 ${large} 1 ${x1} ${y1}`;
-}
+/* ===== gauge ===== */
+function polar(cx,cy,r,deg){const a=(deg-180)*Math.PI/180;return [cx+r*Math.cos(a),cy+r*Math.sin(a)];}
+function arc(cx,cy,r,a0,a1){const[x0,y0]=polar(cx,cy,r,a0),[x1,y1]=polar(cx,cy,r,a1);const large=(a1-a0)>180?1:0;return `M ${x0} ${y0} A ${r} ${r} 0 ${large} 1 ${x1} ${y1}`;}
 function renderGauge(){
-  const W=300,H=176,cx=150,cy=158,r=120, MAX=5;
-  const toDeg = v => Math.max(0,Math.min(MAX,v))/MAX*180;
-  const b=CONFIG.coverageBands;
-  const needle = toDeg(coverage);
-  const [nx,ny]=polar(cx,cy,r-8,needle);
-  const svg=`
-  <svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:300px" role="img" aria-label="Coverage ${coverage.toFixed(1)}x">
+  const W=300,H=176,cx=150,cy=158,r=120,MAX=5;
+  const toDeg=v=>Math.max(0,Math.min(MAX,v))/MAX*180;
+  const b=CONFIG.coverageBands,needle=toDeg(coverage),[nx,ny]=polar(cx,cy,r-8,needle);
+  const svg=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:300px" role="img" aria-label="Coverage ${coverage.toFixed(1)}x">
     <path d="${arc(cx,cy,r,0,180)}" stroke="var(--surface-3)" stroke-width="16" fill="none" stroke-linecap="round"/>
     <path d="${arc(cx,cy,r,0,toDeg(b.red))}" stroke="var(--red)" stroke-width="16" fill="none"/>
     <path d="${arc(cx,cy,r,toDeg(b.red),toDeg(b.green))}" stroke="var(--amber)" stroke-width="16" fill="none"/>
     <path d="${arc(cx,cy,r,toDeg(b.green),180)}" stroke="var(--green)" stroke-width="16" fill="none" stroke-linecap="round"/>
     ${[b.red,b.green].map(v=>{const[tx,ty]=polar(cx,cy,r-26,toDeg(v));return `<text x="${tx}" y="${ty}" fill="var(--muted)" font-family="var(--mono)" font-size="11" text-anchor="middle" dominant-baseline="middle">${v}x</text>`}).join('')}
     <line x1="${cx}" y1="${cy}" x2="${nx}" y2="${ny}" stroke="${colorOf(covState)}" stroke-width="3" stroke-linecap="round"/>
-    <circle cx="${cx}" cy="${cy}" r="6" fill="${colorOf(covState)}"/>
-  </svg>`;
-  document.getElementById('gauge').innerHTML = svg +
+    <circle cx="${cx}" cy="${cy}" r="6" fill="${colorOf(covState)}"/></svg>`;
+  document.getElementById('gauge').innerHTML=svg+
     `<div class="gauge-read" style="color:${colorOf(covState)}">${coverage.toFixed(1)}x</div>
      <div class="gauge-sub">${covLabel} · objetivo ≥ ${CONFIG.coverageBands.green}x</div>
      <div class="gauge-legend">
        <span><i class="dot" style="background:var(--red)"></i>&lt;${CONFIG.coverageBands.red}x</span>
        <span><i class="dot" style="background:var(--amber)"></i>${CONFIG.coverageBands.red}–${CONFIG.coverageBands.green}x</span>
-       <span><i class="dot" style="background:var(--green)"></i>≥${CONFIG.coverageBands.green}x</span>
-     </div>
+       <span><i class="dot" style="background:var(--green)"></i>≥${CONFIG.coverageBands.green}x</span></div>
      <div class="gap-note">Pipe abierto <b>${fmtUSD(pipeTotal)}</b> ÷ quota <b>${fmtUSD(CONFIG.quota)}</b></div>`;
 }
 
 /* ===== kanban ===== */
 function renderBoard(){
-  const maxSum = Math.max(...STAGES.map(s=>DEALS.filter(d=>d.stage===s).reduce((a,d)=>a+d.acv,0)),1);
-  document.getElementById('board').innerHTML = STAGES.map(stage=>{
-    const ds = DEALS.filter(d=>d.stage===stage);
-    const sum = ds.reduce((a,d)=>a+d.acv,0);
-    const cards = ds.map((d,i)=>cardHTML(d, DEALS.indexOf(d))).join('') || `<div style="color:var(--muted-2);font-size:11px;padding:6px 2px">—</div>`;
-    return `<div class="col">
-      <div class="col-h"><span class="name">${stage}</span><span class="meta">${ds.length} · ${fmtUSD(sum)}</span></div>
-      <div class="col-bar"><i style="width:${Math.round(sum/maxSum*100)}%"></i></div>
-      <div class="col-body">${cards}</div></div>`;
+  const maxSum=Math.max(...STAGES.map(s=>DEALS.filter(d=>d.stage===s).reduce((a,d)=>a+d.acv,0)),1);
+  document.getElementById('board').innerHTML=STAGES.map(stage=>{
+    const ds=DEALS.filter(d=>d.stage===stage);
+    const sum=ds.reduce((a,d)=>a+d.acv,0);
+    const cards=ds.map(d=>cardHTML(d,DEALS.indexOf(d))).join('')||`<div class="empty">—</div>`;
+    return `<div><div class="col-h"><span class="name">${stage}</span><span class="meta">${ds.length} · ${fmtUSD(sum)}</span></div>
+      <div class="col-bar"><i style="width:${Math.round(sum/maxSum*100)}%"></i></div><div class="col-body">${cards}</div></div>`;
   }).join('');
 }
-function cardHTML(d, idx){
-  const h = health(d);
-  const whys = Object.keys(WHY_SHORT).map(k=>
-    `<span class="why" data-why="${k}" data-st="${d.whys[k]}"><i class="dot" style="background:${colorOf(d.whys[k])}"></i>${WHY_SHORT[k]}</span>`
-  ).join('');
-  const over = isOverdue(d.nsDate);
+function cardHTML(d,idx){
+  const h=health(d),over=isOverdue(d.nsDate);
+  const whys=Object.keys(WHY_SHORT).map(k=>`<span class="why" data-why="${k}" data-st="${d.whys[k]}"><i class="dot" style="background:${colorOf(d.whys[k])}"></i>${WHY_SHORT[k]}</span>`).join('');
   return `<div class="card" data-idx="${idx}" tabindex="0" role="button">
     <i class="dot health" style="background:${colorOf(h)}"></i>
-    <div class="acct">${d.acct}</div>
-    <div class="prod">${d.prod}</div>
+    <div class="acct">${esc(d.acct)}</div><div class="prod">${esc(d.prod)}</div>
     <div class="acv">${fmtUSD(d.acv)}</div>
     <div class="row"><span class="origin">${originLabel(d.origin)}</span><span class="ns-date${over?' overdue':''}">${fmtDate(d.close)} · cierre</span></div>
     <div class="whys">${whys}</div>
-    <div class="next">
-      <div class="ns">${d.next}</div>
-      <div class="nmeta"><span class="role">${d.role}</span><span class="ns-date${over?' overdue':''}">${fmtDate(d.nsDate)}</span></div>
-    </div>
-  </div>`;
+    <div class="next"><div class="ns">${esc(d.next)}</div>
+      <div class="nmeta"><span class="role">${esc(d.role)}</span><span class="ns-date${over?' overdue':''}">${fmtDate(d.nsDate)}</span></div></div></div>`;
 }
-const originLabel = o => ({auto:'Auto-generado',marketing:'Marketing',bdr:'BDR',partner:'Partner'}[o]||o);
 
-/* ===== next steps panel ===== */
+/* ===== next steps ===== */
 function renderNextSteps(){
   const sorted=[...DEALS].sort((a,b)=>new Date(a.nsDate)-new Date(b.nsDate));
   const overdue=sorted.filter(d=>isOverdue(d.nsDate)).length;
-  document.getElementById('overCount').innerHTML = `<b>${overdue}</b>&nbsp;vencidos`;
-  document.getElementById('nslist').innerHTML = sorted.map(d=>{
-    const over=isOverdue(d.nsDate);
-    return `<div class="nsrow">
-      <div class="d${over?' overdue':''}">${fmtDate(d.nsDate)}</div>
-      <div class="t">${d.next}<small>${d.acct} · ${fmtUSD(d.acv)}</small></div>
-      <span class="role">${d.role}</span></div>`;
+  document.getElementById('overCount').innerHTML=`<b>${overdue}</b>&nbsp;vencidos`;
+  document.getElementById('nslist').innerHTML=sorted.map(d=>{const over=isOverdue(d.nsDate);
+    return `<div class="nsrow"><div class="d${over?' overdue':''}">${fmtDate(d.nsDate)}</div>
+      <div class="t">${esc(d.next)}<small>${esc(d.acct)} · ${fmtUSD(d.acv)}</small></div><span class="role">${esc(d.role)}</span></div>`;}).join('');
+}
+
+/* ===== respuestas pendientes ===== */
+function renderPending(){
+  const items=DEALS.filter(d=>d.sent).map(d=>({d,age:daysSince(d.sent)})).sort((a,b)=>b.age-a.age);
+  const el=document.getElementById('pending');
+  if(!items.length){el.innerHTML=`<div class="empty">Sin respuestas en espera.</div>`;return;}
+  el.innerHTML=items.map(({d,age})=>{
+    const st=age>4?'red':age>=2?'amber':'green';
+    const bg=st==='red'?'var(--red-dim)':st==='amber'?'var(--amber-dim)':'var(--green-dim)';
+    return `<div class="prow"><div class="age" style="background:${bg};color:${colorOf(st)}">${age}d</div>
+      <div class="t">${esc(d.cliente)}<small>${esc(d.acct)} · enviado ${fmtDate(d.sent)}</small></div>
+      <button class="iconbtn" title="Seguir por WhatsApp" data-follow="${DEALS.indexOf(d)}">➤</button></div>`;
   }).join('');
 }
 
-/* ===== ecosystem panel ===== */
+/* ===== ecosistema ===== */
 function renderEco(){
-  const counts={}; ROLES.forEach(r=>counts[r]=0);
+  const counts={};ROLES.forEach(r=>counts[r]=0);
   DEALS.forEach(d=>counts[d.role]=(counts[d.role]||0)+1);
   const max=Math.max(...Object.values(counts),1);
   const ordered=Object.entries(counts).filter(([,c])=>c>0).sort((a,b)=>b[1]-a[1]);
-  document.getElementById('eco').innerHTML = ordered.map(([role,c])=>
-    `<div class="ecorow"><span class="rn">${role}</span>
-      <div class="ecotrack"><i style="width:${Math.round(c/max*100)}%"></i></div>
-      <span class="c">${c}</span></div>`).join('');
+  document.getElementById('eco').innerHTML=ordered.map(([role,c])=>
+    `<div class="ecorow"><span class="rn">${esc(role)}</span><div class="ecotrack"><i style="width:${Math.round(c/max*100)}%"></i></div><span class="c">${c}</span></div>`).join('');
 }
 
-/* ===== tooltips para los 3 Whys ===== */
-const tt=document.getElementById('tt');
-document.addEventListener('mouseover',e=>{
-  const w=e.target.closest('.why'); if(!w)return;
-  const k=w.dataset.why, st=w.dataset.st;
-  tt.innerHTML=`<b>${WHY_LABELS[k].code}</b><br/>${WHY_LABELS[k].tip[st]}`;
-  tt.style.opacity='1';
-  const r=w.getBoundingClientRect();
-  tt.style.left=Math.min(r.left, window.innerWidth-280)+'px';
-  tt.style.top=(r.bottom+8)+'px';
-});
-document.addEventListener('mouseout',e=>{ if(e.target.closest('.why')) tt.style.opacity='0'; });
+function renderAll(){recompute();renderKPIs();renderGauge();renderBoard();renderNextSteps();renderPending();renderEco();}
 
-/* ===== modales ===== */
+/* ===== tooltips ===== */
+const tt=document.getElementById('tt');
+document.addEventListener('mouseover',e=>{const w=e.target.closest('.why');if(!w)return;
+  tt.innerHTML=`<b>${WHY_LABELS[w.dataset.why].code}</b><br/>${WHY_LABELS[w.dataset.why].tip[w.dataset.st]}`;
+  tt.style.opacity='1';const r=w.getBoundingClientRect();
+  tt.style.left=Math.min(r.left,window.innerWidth-280)+'px';tt.style.top=(r.bottom+8)+'px';});
+document.addEventListener('mouseout',e=>{if(e.target.closest('.why'))tt.style.opacity='0';});
+
+/* ===== modales base ===== */
 function openOvl(id){document.getElementById(id).classList.add('open');}
 function closeOvl(){document.querySelectorAll('.ovl').forEach(o=>o.classList.remove('open'));}
 document.querySelectorAll('[data-close]').forEach(b=>b.onclick=closeOvl);
 document.querySelectorAll('.ovl').forEach(o=>o.onclick=e=>{if(e.target===o)closeOvl();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeOvl();});
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2600);}
 
-/* card detail */
-document.getElementById('board').addEventListener('click',e=>{
-  const c=e.target.closest('.card'); if(!c)return; openCard(+c.dataset.idx);
-});
-document.getElementById('board').addEventListener('keydown',e=>{
-  const c=e.target.closest('.card'); if(c&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openCard(+c.dataset.idx);}
-});
+/* ===== detalle de oportunidad + acciones ===== */
 const MP_FULL={M:'Metrics',E:'Economic buyer',D:'Decision criteria',Dp:'Decision process',I:'Identify pain',P:'Paper process',C:'Champion',Co:'Competition'};
+document.getElementById('board').addEventListener('click',e=>{const c=e.target.closest('.card');if(c)openCard(+c.dataset.idx);});
+document.getElementById('board').addEventListener('keydown',e=>{const c=e.target.closest('.card');if(c&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openCard(+c.dataset.idx);}});
 function openCard(idx){
   const d=DEALS[idx];
   document.getElementById('cdTitle').textContent=d.acct;
   document.getElementById('cdSub').textContent=`${d.prod} · ${fmtUSDfull(d.acv)} · ${d.stage}`;
-  const whyHTML=Object.keys(WHY_LABELS).map(k=>{
-    const st=d.whys[k];
-    return `<div class="whyrow"><i class="dot" style="background:${colorOf(st)};margin-top:5px"></i>
-      <div><span class="ql">${WHY_LABELS[k].code}</span><small>${WHY_LABELS[k].tip[st]}</small></div></div>`;
-  }).join('');
-  const mpHTML=Object.entries(d.meddpicc).map(([k,v])=>
-    `<div class="mp"><span class="lt">${k}</span><i class="dot" style="background:${v?'var(--green)':'var(--line-2)'}"></i>${MP_FULL[k]}</div>`).join('');
+  const whyHTML=Object.keys(WHY_LABELS).map(k=>{const st=d.whys[k];
+    return `<div class="whyrow"><i class="dot" style="background:${colorOf(st)};margin-top:5px"></i><div><span class="ql">${WHY_LABELS[k].code}</span><small>${WHY_LABELS[k].tip[st]}</small></div></div>`;}).join('');
+  const mp=d.meddpicc||{};
+  const mpHTML=Object.keys(MP_FULL).map(k=>`<div class="mp"><span class="lt">${k}</span><i class="dot" style="background:${mp[k]?'var(--green)':'var(--line-2)'}"></i>${MP_FULL[k]}</div>`).join('');
   document.getElementById('cdBody').innerHTML=`
-    <div class="ai-block"><div class="ttl">Salud de calificación · 3 Whys (regla del eslabón más débil)</div>${whyHTML}</div>
-    <div class="ai-block"><div class="ttl">MEDDPICC</div><div class="meddpicc">${mpHTML}</div></div>
-    <div class="ai-block"><div class="ttl">Next step</div><p>${d.next}</p>
-      <div class="nmeta" style="display:flex;justify-content:space-between"><span class="role">${d.role}</span><span class="ns-date${isOverdue(d.nsDate)?' overdue':''}">${fmtDate(d.nsDate)}</span></div></div>`;
+    <div class="block"><div class="ttl">Salud · 3 Whys (eslabón más débil)</div>${whyHTML}</div>
+    <div class="block"><div class="ttl">MEDDPICC</div><div class="meddpicc">${mpHTML}</div></div>
+    <div class="block"><div class="ttl">Next step</div><p>${esc(d.next)}</p>
+      <div class="nmeta"><span class="role">${esc(d.role)}</span><span class="ns-date${isOverdue(d.nsDate)?' overdue':''}">${fmtDate(d.nsDate)}</span></div></div>
+    <div class="block"><div class="ttl">Acciones</div><div class="actions">
+      <button class="btn sm" data-act="email" data-idx="${idx}">✉ Email al asignado</button>
+      <button class="btn ghost sm" data-act="material" data-idx="${idx}">📎 Enviar material</button>
+      <button class="btn wa sm" data-act="wa" data-idx="${idx}">WhatsApp al cliente</button>
+    </div></div>`;
   openOvl('cardOvl');
 }
+document.getElementById('cdBody').addEventListener('click',e=>{
+  const b=e.target.closest('[data-act]');if(!b)return;const d=DEALS[+b.dataset.idx];
+  if(b.dataset.act==='email')composeEmail(d);
+  if(b.dataset.act==='wa')composeWA(d,null);
+  if(b.dataset.act==='material')openMaterials(d);
+});
 
-/* AI demo — el "cerebro" generativo (muestra ilustrativa de la capa planificada) */
+/* ===== compose (email / whatsapp) ===== */
+let cp={mode:'email',deal:null,material:null};
+function renderAttach(){
+  const a=document.getElementById('cpAttach');
+  if(cp.material){a.style.display='flex';a.innerHTML=`📎 Material: <b>${esc(cp.material.t)}</b><span class="rm" id="rmAtt">quitar</span>`;
+    document.getElementById('rmAtt').onclick=()=>{cp.material=null;renderAttach();rebuildBody();};}
+  else a.style.display='none';
+}
+function matLine(){return cp.material?`\n\nTe comparto este material que puede ser útil: ${cp.material.t} — ${cp.material.url}`:'';}
+function composeEmail(d){
+  cp={mode:'email',deal:d,material:cp.material&&cp.deal===d?cp.material:null};cp.deal=d;
+  document.getElementById('cpTitle').textContent='Email al asignado';
+  document.getElementById('cpSub').textContent=`Tarea de ${d.acct} → ${d.role}`;
+  const to=ROLE_EMAIL[d.role]||'equipo@miempresa.com';
+  const subj=`[${d.acct}] ${d.next}`;
+  const body=`Hola,\n\nTe paso contexto de la oportunidad ${d.acct} (${d.prod}, ${fmtUSDfull(d.acv)} ACV, etapa ${d.stage}).\n\nNext step: ${d.next}\nFecha objetivo: ${fmtDate(d.nsDate)}\nSalud (3 Whys): ¿por qué hacer algo? ${d.whys.anything} · ¿por qué ahora? ${d.whys.now} · ¿por qué BMC? ${d.whys.bmc}.\n\n¿Podés tomar esta acción y avisarme cuando esté?\n\nGracias.`;
+  document.getElementById('cpFields').innerHTML=`
+    <label class="fld">Para</label><input class="inp" id="cpTo" value="${esc(to)}"/>
+    <label class="fld">Asunto</label><input class="inp" id="cpSubj" value="${esc(subj)}"/>
+    <label class="fld">Mensaje</label><textarea class="ta" id="cpBody">${esc(body)}</textarea>`;
+  document.getElementById('cpSend').textContent='Abrir en correo';
+  cp._base=body;rebuildBody();renderAttach();openOvl('composeOvl');
+}
+function composeWA(d,material){
+  cp={mode:'wa',deal:d,material:material||(cp.material&&cp.deal===d?cp.material:null)};cp.deal=d;
+  document.getElementById('cpTitle').textContent='WhatsApp al cliente';
+  document.getElementById('cpSub').textContent=`${d.cliente} · +${d.tel}`;
+  const body=`Hola, ¿cómo estás? Soy A. Vendedor. Quería retomar nuestra conversación sobre ${d.prod} para ${d.acct.split('·').pop().trim()} y ver cómo seguimos los próximos pasos.`;
+  document.getElementById('cpFields').innerHTML=`
+    <label class="fld">Para (cliente)</label><input class="inp" id="cpTo" value="+${esc(d.tel)}"/>
+    <label class="fld">Mensaje</label><textarea class="ta" id="cpBody">${esc(body)}</textarea>`;
+  document.getElementById('cpSend').textContent='Abrir WhatsApp';
+  cp._base=body;rebuildBody();renderAttach();openOvl('composeOvl');
+}
+function rebuildBody(){
+  const ta=document.getElementById('cpBody');if(!ta)return;
+  ta.value=cp._base+matLine();
+}
+document.getElementById('cpSend').onclick=()=>{
+  const body=document.getElementById('cpBody').value;
+  if(cp.mode==='email'){
+    const to=document.getElementById('cpTo').value,subj=document.getElementById('cpSubj').value;
+    window.location.href=`mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`;
+    toast('Abriendo tu correo con el borrador…');
+  }else{
+    const tel=document.getElementById('cpTo').value.replace(/[^\d]/g,'');
+    window.open(`https://wa.me/${tel}?text=${encodeURIComponent(body)}`,'_blank');
+    toast('Abriendo WhatsApp con el mensaje…');
+  }
+};
+document.getElementById('cpCopy').onclick=async()=>{
+  try{await navigator.clipboard.writeText(document.getElementById('cpBody').value);toast('Texto copiado.');}
+  catch{toast('No se pudo copiar automáticamente.');}
+};
+
+/* ===== biblioteca de materiales ===== */
+let matCtx=null,matFilter='Todos';
+const CATS=['Todos','Whitepaper','Datasheet','Video','Caso de éxito'];
+function openMaterials(deal){
+  matCtx=deal||null;matFilter='Todos';
+  document.getElementById('matSub').textContent=deal?`Para enviar a ${deal.cliente} (${deal.acct})`:'Whitepapers, datasheets, videos y casos de éxito';
+  document.getElementById('matFilters').innerHTML=CATS.map(c=>`<span class="chip${c==='Todos'?' on':''}" data-cat="${c}">${c}</span>`).join('');
+  renderMaterials();openOvl('matOvl');
+}
+function renderMaterials(){
+  const list=MATERIALS.filter(m=>matFilter==='Todos'||m.cat===matFilter);
+  document.getElementById('matList').innerHTML=list.map((m,i)=>{
+    const gi=MATERIALS.indexOf(m);
+    const actions=matCtx?`<button class="iconbtn" title="Adjuntar a email" data-mat="${gi}" data-via="email">✉</button>
+      <button class="iconbtn" title="Enviar por WhatsApp" data-mat="${gi}" data-via="wa" style="border-color:#178c47">▶</button>`
+      :`<a class="iconbtn" href="${esc(m.url)}" target="_blank" title="Abrir" style="display:grid;place-items:center;text-decoration:none">↗</a>`;
+    return `<div class="mat"><div class="ic">${m.ic}</div>
+      <div class="info"><div class="tt2">${esc(m.t)}</div><small>${esc(m.cat)} · ${m.tags.join(', ')}</small></div>
+      <div class="mact">${actions}</div></div>`;
+  }).join('')||`<div class="empty">No hay materiales en esta categoría.</div>`;
+}
+document.getElementById('matFilters').addEventListener('click',e=>{const c=e.target.closest('[data-cat]');if(!c)return;
+  matFilter=c.dataset.cat;document.querySelectorAll('#matFilters .chip').forEach(x=>x.classList.toggle('on',x===c));renderMaterials();});
+document.getElementById('matList').addEventListener('click',e=>{const b=e.target.closest('[data-mat]');if(!b||!matCtx)return;
+  const m=MATERIALS[+b.dataset.mat];closeOvl();
+  if(b.dataset.via==='email'){composeEmail(matCtx);cp.material=m;renderAttach();rebuildBody();}
+  else{composeWA(matCtx,m);}
+});
+
+/* ===== seguir respuesta pendiente ===== */
+document.getElementById('pending').addEventListener('click',e=>{const b=e.target.closest('[data-follow]');if(!b)return;composeWA(DEALS[+b.dataset.follow],null);});
+
+/* ===== generar con IA ===== */
 document.getElementById('aiBtn').onclick=()=>{
-  const focus=[...DEALS].filter(isOpen).sort((a,b)=>RANK[health(a)]-RANK[health(b)])[0]; // el deal de salud más floja
+  const focus=[...DEALS].filter(isOpen).sort((a,b)=>RANK[health(a)]-RANK[health(b)])[0];
+  if(!focus){toast('No hay oportunidades abiertas.');return;}
+  const weakKey=Object.keys(focus.whys).find(k=>focus.whys[k]===health(focus));
   document.getElementById('aiTitle').textContent='Next step + brief sugeridos';
   document.getElementById('aiBody').innerHTML=`
-    <div class="ai-block"><div class="ttl">Oportunidad en foco · ${focus.acct}</div>
-      <p style="color:var(--muted)">El asistente prioriza el deal con el Why más débil: <b style="color:${colorOf(health(focus))}">${WHY_LABELS[Object.keys(focus.whys).find(k=>focus.whys[k]===health(focus))].code}</b> en rojo/amarillo.</p></div>
-    <div class="ai-block"><div class="ttl">Next step propuesto</div>
-      <p>Agendar una reunión de discovery con el sponsor para validar el <b>compelling event</b>: si no hay una fecha o evento que fuerce la decisión, el deal no debería avanzar de etapa todavía.</p></div>
-    <div class="ai-block"><div class="ttl">Brief para el ecosistema → Value Engineer</div>
-      <p>"Necesito construir un caso de negocio para ${focus.acct} (${fmtUSD(focus.acv)} ACV). Contamos con el dolor identificado pero falta cuantificarlo. ¿Podés preparar 2–3 métricas de impacto y un rango de ROI para la próxima reunión ejecutiva?"</p></div>
-    <div class="ai-note"><b style="color:var(--accent)">Cómo funciona en el proyecto:</b> esta capa la resuelve un asistente generativo (un GPT/Proyecto de Claude) al que se le pegan las notas del deal y devuelve next steps y briefs. La IA <b>sugiere</b>; el Account Manager <b>revisa, edita y aprueba</b> antes de asignar. Control humano por diseño.</div>`;
+    <div class="block"><div class="ttl">Oportunidad en foco · ${esc(focus.acct)}</div>
+      <p style="color:var(--muted)">El asistente prioriza el deal con el Why más débil: <b style="color:${colorOf(health(focus))}">${WHY_LABELS[weakKey].code}</b>.</p></div>
+    <div class="block"><div class="ttl">Next step propuesto</div>
+      <p>Validar con el sponsor el <b>compelling event</b>: si no hay fecha que fuerce la decisión, el deal no debería avanzar de etapa todavía.</p></div>
+    <div class="block"><div class="ttl">Brief para el ecosistema → Value Engineer</div>
+      <p>"Necesito un caso de negocio para ${esc(focus.acct)} (${fmtUSD(focus.acv)} ACV). El dolor está identificado pero falta cuantificarlo. ¿Podés armar 2–3 métricas de impacto y un rango de ROI?"</p></div>
+    <div class="note"><b style="color:var(--accent)">Cómo funciona:</b> esta capa la resuelve un asistente generativo (un GPT/Proyecto de Claude). La IA sugiere; vos revisás y aprobás antes de asignar.</div>`;
   openOvl('aiOvl');
 };
 
+/* ===== biblioteca desde topbar ===== */
+document.getElementById('matBtn').onclick=()=>openMaterials(null);
+
+/* ===== importar CSV ===== */
+const CSV_HEADERS='cuenta,producto,acv,etapa,origen,cierre,next_step,ns_fecha,responsable,why_anything,why_now,why_bmc,cliente,telefono,respuesta_enviada';
+function parseCSV(text){
+  const rows=[];let i=0,field='',row=[],q=false;
+  while(i<text.length){const c=text[i];
+    if(q){if(c==='"'){if(text[i+1]==='"'){field+='"';i++;}else q=false;}else field+=c;}
+    else{if(c==='"')q=true;else if(c===','){row.push(field);field='';}
+      else if(c==='\n'||c==='\r'){if(c==='\r'&&text[i+1]==='\n')i++;if(field!==''||row.length){row.push(field);rows.push(row);row=[];field='';}}
+      else field+=c;}
+    i++;}
+  if(field!==''||row.length){row.push(field);rows.push(row);}
+  return rows;
+}
+const WHY_MAP={verde:'green',amarillo:'amber',rojo:'red',green:'green',amber:'amber',red:'red'};
+function mapWhy(v){return WHY_MAP[String(v||'').trim().toLowerCase()]||'red';}
+function importCSV(text){
+  const rows=parseCSV(text).filter(r=>r.length>1&&r.some(c=>c.trim()!==''));
+  if(rows.length<2)throw new Error('vacío');
+  const head=rows[0].map(h=>h.trim().toLowerCase());
+  const col=n=>head.indexOf(n);
+  const get=(r,n)=>{const i=col(n);return i>=0?(r[i]||'').trim():'';};
+  const stageMap={};STAGES.forEach(s=>stageMap[s.toLowerCase()]=s);
+  const out=rows.slice(1).map(r=>{
+    const stg=stageMap[get(r,'etapa').toLowerCase()]||'Calificación';
+    return{acct:get(r,'cuenta')||'Sin nombre',prod:get(r,'producto')||'—',
+      acv:Number(String(get(r,'acv')).replace(/[^\d.-]/g,''))||0,stage:stg,
+      origin:(get(r,'origen')||'auto').toLowerCase(),close:get(r,'cierre')||'2026-12-31',
+      whys:{anything:mapWhy(get(r,'why_anything')),now:mapWhy(get(r,'why_now')),bmc:mapWhy(get(r,'why_bmc'))},
+      next:get(r,'next_step')||'Definir próximo paso',nsDate:get(r,'ns_fecha')||'2026-12-31',
+      role:get(r,'responsable')||'Account Manager',cliente:get(r,'cliente')||'Contacto',
+      tel:String(get(r,'telefono')).replace(/[^\d]/g,'')||'5491100000000',
+      sent:get(r,'respuesta_enviada')||null,meddpicc:{}};
+  });
+  if(!out.length)throw new Error('sin filas');
+  DEALS=out;renderAll();
+  document.getElementById('srcPill').innerHTML='Fuente · <b>CSV</b>';
+  toast(`Importadas ${out.length} oportunidades desde el CSV.`);
+}
+document.getElementById('csvBtn').onclick=()=>document.getElementById('csvInput').click();
+document.getElementById('csvInput').addEventListener('change',e=>{
+  const f=e.target.files[0];if(!f)return;const rd=new FileReader();
+  rd.onload=()=>{try{importCSV(rd.result);}catch(err){toast('No pude leer el CSV. Revisá el formato.');}};
+  rd.onerror=()=>toast('Error al abrir el archivo.');rd.readAsText(f,'utf-8');
+  e.target.value='';
+});
+
 /* init */
-renderKPIs(); renderGauge(); renderBoard(); renderNextSteps(); renderEco();
+renderAll();
 </script>
 </body>
 </html>
