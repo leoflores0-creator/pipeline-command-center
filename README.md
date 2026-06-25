@@ -1,5 +1,9 @@
 # Pipeline Command Center
 
+# Pipeline Command Center
+
+🔗 **App en vivo:** https://leoflores0-creator.github.io/pipeline-command-center/
+
 > Tablero para la **gestión, seguimiento y activación del pipeline de ventas** de un Account Manager de cuentas estratégicas: Coverage contra quota, next steps por oportunidad, asignación de tareas al ecosistema (preventas, value engineering, marketing, customer success, partners y BDR) y activación de comunicaciones con el cliente (email, material de marketing y WhatsApp).
 
 **Trabajo Final Integrador** — Diplomatura en IA Aplicada a Entornos Digitales de Gestión · FCE-UBA · Cohorte 2026
