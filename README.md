@@ -86,4 +86,5 @@ El proyecto se desarrolla de forma iterativa; el historial de *commits* refleja 
 
 ## Autor
 
-[Tu nombre] · Cohorte 2026 · FCE-UBA
+Leonardo Flores · Cohorte 2026 · FCE-UBA
+ID 57FL25142673@campus.economicas.uba.ar
