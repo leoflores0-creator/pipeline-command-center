@@ -41,6 +41,8 @@
   .topmeta{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
   .pill{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:5px 11px;background:var(--surface)}
   .pill b{color:var(--text);font-weight:700}
+  .sellersel{background:transparent;border:0;color:var(--text);font-family:var(--body);font-weight:700;font-size:11px;cursor:pointer;outline:none}
+  .sellersel option{color:#111}
   .btn{font-family:var(--body);font-weight:600;font-size:13px;cursor:pointer;border-radius:8px;border:1px solid var(--accent-dim);background:linear-gradient(180deg,#2b517a,#1f3c5c);color:#fff;padding:9px 14px;display:inline-flex;align-items:center;gap:7px;transition:filter .15s,transform .05s}
   .btn:hover{filter:brightness(1.12)}
   .btn:active{transform:translateY(1px)}
@@ -65,10 +67,9 @@
   .panel-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:10px}
   .panel-h h2{font-family:var(--disp);font-size:13px;font-weight:600;letter-spacing:.02em;text-transform:uppercase;color:var(--muted);margin:0}
   .gauge-wrap{display:flex;flex-direction:column;align-items:center}
-  .gauge-read{font-family:var(--mono);font-weight:700;font-size:40px;line-height:1;margin-top:-46px}
-  .gauge-sub{color:var(--muted);font-size:12px;margin-top:6px;text-align:center}
-  .gauge-legend{display:flex;gap:14px;margin-top:14px;font-size:11px;color:var(--muted);flex-wrap:wrap;justify-content:center}
-  .gauge-legend span{display:inline-flex;align-items:center;gap:6px}
+  .gauge-sub{color:var(--muted);font-size:12px;margin-top:4px;text-align:center}
+  .gauge-legend{display:flex;gap:8px;margin-top:13px;justify-content:center}
+  .gauge-legend .lg{font-family:var(--mono);font-size:11px;font-weight:700;border-radius:7px;padding:4px 10px}
   .gap-note{margin-top:13px;border-top:1px dashed var(--line-2);padding-top:11px;font-size:12px;color:var(--muted);text-align:center}
   .gap-note b{font-family:var(--mono);color:var(--text)}
 
@@ -91,7 +92,7 @@
   .origin{font-size:9.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:2px 6px}
   .health{position:absolute;top:11px;right:11px}
   .whys{display:flex;gap:5px;margin-top:9px}
-  .why{display:flex;align-items:center;gap:4px;font-family:var(--mono);font-size:9.5px;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:2px 5px;background:var(--surface)}
+  .why{display:inline-flex;align-items:center;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.04em;border-radius:6px;padding:3px 7px;cursor:default}
   .next{margin-top:9px;border-top:1px solid var(--line);padding-top:8px}
   .next .ns{font-size:11.5px;line-height:1.35}
   .nmeta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:6px}
@@ -147,12 +148,32 @@
   .note{font-size:11.5px;color:var(--muted-2);line-height:1.5;border-top:1px dashed var(--line-2);padding-top:11px;margin-top:4px}
   .meddpicc{display:grid;grid-template-columns:1fr 1fr;gap:7px}
   .mp{display:flex;align-items:center;gap:8px;font-size:12px;background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:7px 9px}
+  .mp.done{cursor:pointer}
+  .mp.done:hover{border-color:var(--accent-dim)}
+  .mp.sel{border-color:var(--accent);background:var(--surface-3)}
+  .mp-detail{margin-top:10px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:11px 12px;font-size:12.5px;color:var(--muted);min-height:42px}
+  .mp-detail b{color:var(--text);display:block;margin-bottom:4px;font-size:12px}
+  .mp-detail p{margin:0;color:var(--text)}
   .mp .lt{font-family:var(--mono);font-weight:700;width:18px;color:var(--muted)}
   .whyrow{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
   .whyrow:last-child{border-bottom:0}
   .whyrow .ql{font-size:13px;font-weight:600}
   .whyrow small{color:var(--muted);display:block;margin-top:2px;font-size:11.5px}
   .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+  /* timeline histórico */
+  .timeline{display:flex;flex-direction:column}
+  .tl-item{display:flex;gap:11px;padding:8px 0;border-bottom:1px solid var(--line)}
+  .tl-item:last-child{border-bottom:0}
+  .tl-dot{width:10px;height:10px;border-radius:50%;flex:none;margin-top:4px}
+  .tl-dot.done{background:var(--green)}
+  .tl-dot.pend{background:transparent;border:2px solid var(--amber)}
+  .tl-body{flex:1;min-width:0}
+  .tl-top{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;line-height:1.35}
+  .tl-meta{font-size:11px;color:var(--muted);margin-top:3px}
+  .tl-actions{display:flex;gap:6px;margin-top:7px}
+  .tl-ab{cursor:pointer;border:1px solid var(--line-2);background:var(--surface);color:var(--text);border-radius:6px;font-size:11px;padding:4px 9px;display:inline-flex;align-items:center;gap:5px}
+  .tl-ab:hover{border-color:var(--accent-dim)}
+  .tl-ab.done{border-color:#1f6e4a;color:var(--green)}
 
   /* compose / form fields */
   label.fld{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:11px 0 5px}
@@ -198,7 +219,7 @@
       </div>
     </div>
     <div class="topmeta">
-      <span class="pill">AM · <b>A. Vendedor</b></span>
+      <span class="pill" style="display:inline-flex;align-items:center;gap:6px">Vendedor <select id="sellerSel" class="sellersel"></select></span>
       <span class="pill">FY26 · <b>ACV</b></span>
       <input type="file" id="csvInput" accept=".csv" style="display:none" />
       <button class="btn ghost sm" id="csvBtn" title="Importá un reporte exportado de Salesforce (.csv)">↑ Importar CSV</button>
@@ -239,8 +260,8 @@
   </div>
 
   <footer>
-    Maqueta funcional · datos <b>ficticios y anonimizados</b> · sin backend · IA y envíos <b>bajo control humano</b><br/>
-    Trabajo Final Integrador — Diplomatura en IA Aplicada a Entornos Digitales de Gestión · FCE-UBA
+    Maqueta funcional · <b>empresas reales</b> con contactos, montos y datos de pipeline <b>ficticios</b> · sin backend · IA y envíos bajo control humano<br/>
+    Leonardo Flores · Cohorte 2026 · FCE-UBA · Trabajo Final Integrador — Diplomatura en IA Aplicada a Entornos Digitales de Gestión
   </footer>
 </div>
 
@@ -249,7 +270,7 @@
 
 <!-- AI modal -->
 <div class="ovl" id="aiOvl"><div class="modal">
-  <div class="mh"><div><div class="ai-badge">✦ Capa de IA generativa</div><h3 id="aiTitle">Next step sugerido</h3></div><button class="x" data-close>✕</button></div>
+  <div class="mh"><div><div class="ai-badge">✦ Capa de IA · demostración</div><h3 id="aiTitle">Next step sugerido</h3></div><button class="x" data-close>✕</button></div>
   <div id="aiBody"></div>
 </div></div>
 
@@ -286,9 +307,9 @@ const STAGE_OPEN=['Prospección','Calificación','Validación','Propuesta','Nego
 const WHY_LABELS={
   anything:{code:'¿Por qué hacer algo?',tip:{green:'Dolor confirmado y cuantificado por el cliente.',amber:'Dolor identificado pero sin cuantificar.',red:'Solo un supuesto del vendedor; sin validar.'}},
   now:{code:'¿Por qué ahora?',tip:{green:'Compelling event con fecha (cierre fiscal, vencimiento, auditoría).',amber:'Interés con urgencia blanda, sin fecha.',red:'Sin urgencia: "algún día".'}},
-  bmc:{code:'¿Por qué BMC?',tip:{green:'Criterios a favor + champion que vende internamente.',amber:'Compitiendo de igual a igual, sin champion claro.',red:'El cliente no percibe diferencia.'}}
+  bmc:{code:'¿Por qué nosotros?',tip:{green:'Criterios a favor + champion que vende internamente.',amber:'Compitiendo de igual a igual, sin champion claro.',red:'El cliente no percibe diferencia.'}}
 };
-const WHY_SHORT={anything:'DO',now:'NOW',bmc:'BMC'};
+const WHY_SHORT={anything:'DO',now:'NOW',bmc:'US'};
 const ROLES=['Preventas','Value Engineer','Marketing','Customer Success','Partner','BDR','Account Manager'];
 const ROLE_EMAIL={Preventas:'preventas@miempresa.com','Value Engineer':'value.engineering@miempresa.com',Marketing:'marketing@miempresa.com','Customer Success':'cs@miempresa.com',Partner:'partners@miempresa.com',BDR:'bdr@miempresa.com','Account Manager':'mi.equipo@miempresa.com'};
 
@@ -303,19 +324,121 @@ const MATERIALS=[
   {t:'Seguridad y cumplimiento en la nube',cat:'Whitepaper',ic:'📄',tags:['todas'],url:'https://recursos.miempresa.com/wp-seguridad'},
 ];
 
-/* ===== datos demo (ficticios y anonimizados) ===== */
-const DEMO=[
-  {acct:'Banca · Cuenta A',prod:'Plataforma de Automatización',acv:680000,stage:'Negociación',origin:'auto',close:'2026-07-30',whys:{anything:'green',now:'green',bmc:'amber'},next:'Cerrar términos comerciales con Procurement',nsDate:'2026-06-20',role:'Account Manager',cliente:'Contacto · Cuenta A',tel:'5491100000001',sent:'2026-06-12',meddpicc:{M:1,E:1,D:1,Dp:0,I:1,P:1,C:1,Co:1}},
-  {acct:'Retail · Cuenta B',prod:'Suite de Operaciones',acv:540000,stage:'Validación',origin:'auto',close:'2026-09-15',whys:{anything:'green',now:'amber',bmc:'green'},next:'Coordinar POV técnico con infraestructura',nsDate:'2026-06-26',role:'Preventas',cliente:'Contacto · Cuenta B',tel:'5491100000002',sent:null,meddpicc:{M:1,E:0,D:1,Dp:0,I:1,P:1,C:1,Co:0}},
-  {acct:'Telco · Cuenta C',prod:'Plataforma de Automatización',acv:910000,stage:'Propuesta',origin:'marketing',close:'2026-08-10',whys:{anything:'green',now:'green',bmc:'green'},next:'Construir caso de negocio con ROI cuantificado',nsDate:'2026-06-22',role:'Value Engineer',cliente:'Contacto · Cuenta C',tel:'5491100000003',sent:'2026-06-18',meddpicc:{M:1,E:1,D:1,Dp:1,I:1,P:1,C:1,Co:1}},
-  {acct:'Energía · Cuenta D',prod:'Suite de Observabilidad',acv:430000,stage:'Calificación',origin:'bdr',close:'2026-10-05',whys:{anything:'amber',now:'red',bmc:'amber'},next:'Discovery con el sponsor por el compelling event',nsDate:'2026-06-27',role:'Account Manager',cliente:'Contacto · Cuenta D',tel:'5491100000004',sent:null,meddpicc:{M:0,E:0,D:0,Dp:0,I:1,P:0,C:0,Co:0}},
-  {acct:'Salud · Cuenta E',prod:'Suite de Operaciones',acv:760000,stage:'Validación',origin:'partner',close:'2026-09-28',whys:{anything:'green',now:'amber',bmc:'amber'},next:'Enviar brief al partner para taller conjunto',nsDate:'2026-06-19',role:'Partner',cliente:'Contacto · Cuenta E',tel:'5491100000005',sent:'2026-06-22',meddpicc:{M:1,E:0,D:1,Dp:0,I:1,P:0,C:1,Co:0}},
-  {acct:'Gobierno · Cuenta F',prod:'Plataforma de Automatización',acv:520000,stage:'Prospección',origin:'auto',close:'2026-11-20',whys:{anything:'amber',now:'red',bmc:'red'},next:'Mapear estructura de decisión y stakeholders',nsDate:'2026-07-01',role:'Account Manager',cliente:'Contacto · Cuenta F',tel:'5491100000006',sent:null,meddpicc:{M:0,E:0,D:0,Dp:0,I:0,P:0,C:0,Co:0}},
-  {acct:'Manufactura · Cuenta G',prod:'Suite de Observabilidad',acv:340000,stage:'Calificación',origin:'marketing',close:'2026-10-18',whys:{anything:'amber',now:'amber',bmc:'green'},next:'Webinar de nurturing + reunión ejecutiva',nsDate:'2026-06-30',role:'Marketing',cliente:'Contacto · Cuenta G',tel:'5491100000007',sent:null,meddpicc:{M:0,E:0,D:1,Dp:0,I:1,P:0,C:1,Co:0}},
-  {acct:'Seguros · Cuenta H',prod:'Suite de Operaciones',acv:470000,stage:'Propuesta',origin:'auto',close:'2026-08-25',whys:{anything:'green',now:'green',bmc:'amber'},next:'Revisar adopción con Customer Success',nsDate:'2026-06-24',role:'Customer Success',cliente:'Contacto · Cuenta H',tel:'5491100000008',sent:null,meddpicc:{M:1,E:1,D:1,Dp:0,I:1,P:1,C:1,Co:0}},
-  {acct:'Logística · Cuenta I',prod:'Plataforma de Automatización',acv:610000,stage:'Negociación',origin:'auto',close:'2026-07-15',whys:{anything:'green',now:'green',bmc:'green'},next:'Agendar firma con el economic buyer',nsDate:'2026-06-28',role:'Account Manager',cliente:'Contacto · Cuenta I',tel:'5491100000009',sent:null,meddpicc:{M:1,E:1,D:1,Dp:1,I:1,P:1,C:1,Co:1}},
+/* ===== vendedores (ficticios) ===== */
+const SELLERS=[
+  {name:'Leonardo Flores',quota:1500000},
+  {name:'Martina Gómez',quota:1200000},
+  {name:'Diego Fernández',quota:1000000},
 ];
-let DEALS = DEMO.map(d=>({...d}));
+let selectedSeller='Leonardo Flores';
+
+/* ===== datos demo · empresas reales, contactos y montos FICTICIOS ===== */
+const BASE=[
+  /* --- Leonardo Flores --- */
+  {owner:'Leonardo Flores',acct:'Telecom Argentina',prod:'Plataforma de Automatización',acv:950000,stage:'Negociación',origin:'auto',close:'2026-07-30',whys:{anything:'green',now:'green',bmc:'amber'},next:'Cerrar términos comerciales con Compras',nsDate:'2026-06-20',role:'Account Manager',cliente:'Gabriel Sosa — CIO',tel:'5491140000011',sent:'2026-06-12',meddpicc:{M:1,E:1,D:1,Dp:0,I:1,P:1,C:1,Co:1}},
+  {owner:'Leonardo Flores',acct:'BBVA Argentina',prod:'Suite de Operaciones',acv:820000,stage:'Propuesta',origin:'auto',close:'2026-08-25',whys:{anything:'green',now:'green',bmc:'amber'},next:'Revisar adopción con Customer Success',nsDate:'2026-06-24',role:'Customer Success',cliente:'Florencia Díaz — CTO',tel:'5491140000012',sent:null,meddpicc:{M:1,E:1,D:1,Dp:0,I:1,P:1,C:1,Co:0}},
+  {owner:'Leonardo Flores',acct:'Banco Nación',prod:'Suite de Observabilidad',acv:680000,stage:'Validación',origin:'partner',close:'2026-09-28',whys:{anything:'green',now:'amber',bmc:'amber'},next:'Enviar brief al partner para taller conjunto',nsDate:'2026-06-19',role:'Partner',cliente:'Roberto Méndez — Director de Sistemas',tel:'5491140000013',sent:'2026-06-22',meddpicc:{M:1,E:0,D:1,Dp:0,I:1,P:0,C:1,Co:0}},
+  {owner:'Leonardo Flores',acct:'Mercado Libre',prod:'Plataforma de Automatización',acv:1100000,stage:'Propuesta',origin:'marketing',close:'2026-08-10',whys:{anything:'green',now:'green',bmc:'green'},next:'Construir caso de negocio con ROI cuantificado',nsDate:'2026-06-22',role:'Value Engineer',cliente:'Nicolás Ferreyra — VP de Engineering',tel:'5491140000014',sent:'2026-06-18',meddpicc:{M:1,E:1,D:1,Dp:1,I:1,P:1,C:1,Co:1}},
+  {owner:'Leonardo Flores',acct:'YPF',prod:'Suite de Observabilidad',acv:540000,stage:'Calificación',origin:'bdr',close:'2026-10-05',whys:{anything:'amber',now:'red',bmc:'amber'},next:'Discovery con el sponsor por el compelling event',nsDate:'2026-06-27',role:'Account Manager',cliente:'Andrés Vega — Gerente de TI',tel:'5491140000015',sent:null,meddpicc:{M:0,E:0,D:0,Dp:0,I:1,P:0,C:0,Co:0}},
+  {owner:'Leonardo Flores',acct:'Coto',prod:'Plataforma de Automatización',acv:430000,stage:'Prospección',origin:'auto',close:'2026-11-20',whys:{anything:'amber',now:'red',bmc:'red'},next:'Mapear estructura de decisión y stakeholders',nsDate:'2026-07-01',role:'Account Manager',cliente:'Mariano Suárez — Gerente de Sistemas',tel:'5491140000016',sent:null,meddpicc:{M:0,E:0,D:0,Dp:0,I:0,P:0,C:0,Co:0}},
+  {owner:'Leonardo Flores',acct:'Banco Supervielle',prod:'Suite de Operaciones',acv:760000,stage:'Validación',origin:'auto',close:'2026-09-15',whys:{anything:'green',now:'amber',bmc:'green'},next:'Coordinar POV técnico con infraestructura',nsDate:'2026-06-26',role:'Preventas',cliente:'Diego Herrera — CIO',tel:'5491140000017',sent:null,meddpicc:{M:1,E:0,D:1,Dp:0,I:1,P:1,C:1,Co:0}},
+  /* --- Martina Gómez --- */
+  {owner:'Martina Gómez',acct:'ANSES',prod:'Suite de Operaciones',acv:600000,stage:'Calificación',origin:'marketing',close:'2026-10-18',whys:{anything:'amber',now:'amber',bmc:'green'},next:'Webinar de nurturing + reunión ejecutiva',nsDate:'2026-06-30',role:'Marketing',cliente:'Sergio Maldonado — Director de Tecnología',tel:'5491140000021',sent:null,meddpicc:{M:0,E:0,D:1,Dp:0,I:1,P:0,C:1,Co:0}},
+  {owner:'Martina Gómez',acct:'Banco Galicia',prod:'Plataforma de Automatización',acv:700000,stage:'Propuesta',origin:'auto',close:'2026-08-12',whys:{anything:'green',now:'green',bmc:'amber'},next:'Negociar alcance con IT',nsDate:'2026-06-23',role:'Account Manager',cliente:'Tomás Bravo — Gerente de IT',tel:'5491140000022',sent:'2026-06-17',meddpicc:{M:1,E:1,D:1,Dp:0,I:1,P:1,C:1,Co:0}},
+  {owner:'Martina Gómez',acct:'Arcor',prod:'Suite de Observabilidad',acv:480000,stage:'Validación',origin:'partner',close:'2026-09-05',whys:{anything:'green',now:'amber',bmc:'amber'},next:'Demo conjunta con el partner',nsDate:'2026-06-21',role:'Preventas',cliente:'Pablo Domínguez — Gerente de Operaciones',tel:'5491140000023',sent:null,meddpicc:{M:1,E:0,D:1,Dp:0,I:1,P:0,C:1,Co:0}},
+  /* --- Diego Fernández --- */
+  {owner:'Diego Fernández',acct:'Naranja X',prod:'Plataforma de Automatización',acv:1100000,stage:'Negociación',origin:'auto',close:'2026-07-22',whys:{anything:'green',now:'green',bmc:'green'},next:'Agendar firma con el economic buyer',nsDate:'2026-06-28',role:'Account Manager',cliente:'Julián Paz — CTO',tel:'5491140000031',sent:null,meddpicc:{M:1,E:1,D:1,Dp:1,I:1,P:1,C:1,Co:1}},
+  {owner:'Diego Fernández',acct:'Banco Macro',prod:'Suite de Operaciones',acv:1500000,stage:'Propuesta',origin:'auto',close:'2026-08-30',whys:{anything:'green',now:'green',bmc:'amber'},next:'Presentar propuesta al comité',nsDate:'2026-06-25',role:'Account Manager',cliente:'Esteban Ortiz — Gerente de Sistemas',tel:'5491140000032',sent:'2026-06-15',meddpicc:{M:1,E:1,D:1,Dp:1,I:1,P:1,C:1,Co:1}},
+  {owner:'Diego Fernández',acct:'Farmacity',prod:'Suite de Observabilidad',acv:1400000,stage:'Validación',origin:'marketing',close:'2026-09-20',whys:{anything:'green',now:'amber',bmc:'green'},next:'Coordinar POV de observabilidad',nsDate:'2026-06-29',role:'Preventas',cliente:'Romina Acosta — Gerente de IT',tel:'5491140000033',sent:null,meddpicc:{M:1,E:0,D:1,Dp:0,I:1,P:1,C:1,Co:0}},
+];
+/* histórico de acciones realizadas (ficticio) por cuenta */
+const HIST={
+  'Telecom Argentina':[
+    {date:'2026-04-08',type:'meeting',text:'Reunión inicial con el CIO',actor:'Account Manager'},
+    {date:'2026-04-22',type:'demo',text:'Demo de la plataforma',actor:'Preventas'},
+    {date:'2026-05-15',type:'meeting',text:'Taller de ROI con Operaciones',actor:'Value Engineer'},
+    {date:'2026-06-03',type:'proposal',text:'Envío de propuesta formal',actor:'Account Manager'},
+    {date:'2026-06-12',type:'email',text:'Seguimiento con Compras',actor:'Account Manager'},
+  ],
+  'BBVA Argentina':[
+    {date:'2026-04-20',type:'meeting',text:'Kickoff comercial con la CTO',actor:'Account Manager'},
+    {date:'2026-05-22',type:'proposal',text:'Propuesta enviada',actor:'Account Manager'},
+    {date:'2026-06-10',type:'meeting',text:'Revisión de adopción inicial',actor:'Customer Success'},
+  ],
+  'Banco Nación':[
+    {date:'2026-04-30',type:'meeting',text:'Reunión con el partner y el cliente',actor:'Partner'},
+    {date:'2026-05-18',type:'demo',text:'Demo conjunta con el partner',actor:'Preventas'},
+    {date:'2026-06-22',type:'whatsapp',text:'Coordinación de taller por WhatsApp',actor:'Account Manager'},
+  ],
+  'Mercado Libre':[
+    {date:'2026-04-15',type:'meeting',text:'Reunión con el VP de Engineering',actor:'Account Manager'},
+    {date:'2026-05-10',type:'demo',text:'Demo técnica',actor:'Preventas'},
+    {date:'2026-05-28',type:'note',text:'Identificado driver de escalabilidad',actor:'Account Manager'},
+    {date:'2026-06-18',type:'meeting',text:'Sesión de criterios de decisión',actor:'Account Manager'},
+  ],
+  'YPF':[
+    {date:'2026-05-25',type:'call',text:'Primer contacto desde BDR',actor:'BDR'},
+    {date:'2026-06-10',type:'email',text:'Envío de material introductorio',actor:'Marketing'},
+  ],
+  'Coto':[
+    {date:'2026-06-15',type:'note',text:'Investigación de la cuenta',actor:'Account Manager'},
+  ],
+  'Banco Supervielle':[
+    {date:'2026-05-02',type:'call',text:'Llamada de descubrimiento',actor:'BDR'},
+    {date:'2026-05-20',type:'meeting',text:'Presentación de capacidades',actor:'Account Manager'},
+    {date:'2026-06-04',type:'material',text:'Envío de datasheet técnico',actor:'Account Manager'},
+  ],
+  'ANSES':[
+    {date:'2026-05-12',type:'email',text:'Inscripción a webinar',actor:'Marketing'},
+    {date:'2026-06-08',type:'call',text:'Llamada de calificación',actor:'Account Manager'},
+  ],
+  'Banco Galicia':[
+    {date:'2026-04-25',type:'meeting',text:'Reunión inicial con IT',actor:'Account Manager'},
+    {date:'2026-05-30',type:'proposal',text:'Propuesta enviada',actor:'Account Manager'},
+    {date:'2026-06-17',type:'email',text:'Seguimiento de la propuesta',actor:'Account Manager'},
+  ],
+  'Arcor':[
+    {date:'2026-05-08',type:'meeting',text:'Reunión con el partner',actor:'Partner'},
+    {date:'2026-06-05',type:'demo',text:'Demo de capacidades',actor:'Preventas'},
+  ],
+  'Naranja X':[
+    {date:'2026-04-05',type:'meeting',text:'Descubrimiento con plataforma',actor:'Account Manager'},
+    {date:'2026-05-08',type:'demo',text:'Prueba de concepto',actor:'Preventas'},
+    {date:'2026-05-30',type:'proposal',text:'Propuesta y negociación',actor:'Account Manager'},
+    {date:'2026-06-16',type:'meeting',text:'Acuerdo de términos finales',actor:'Account Manager'},
+  ],
+  'Banco Macro':[
+    {date:'2026-04-18',type:'meeting',text:'Kickoff con Sistemas',actor:'Account Manager'},
+    {date:'2026-05-25',type:'proposal',text:'Propuesta enviada al comité',actor:'Account Manager'},
+  ],
+  'Farmacity':[
+    {date:'2026-05-14',type:'meeting',text:'Presentación de observabilidad',actor:'Account Manager'},
+    {date:'2026-06-09',type:'demo',text:'Demo técnica',actor:'Preventas'},
+  ],
+};
+/* acciones pendientes adicionales (además del next step principal) */
+const PEND={
+  'Telecom Argentina':[{date:'2026-07-05',text:'Coordinar firma con legales',role:'Account Manager'}],
+  'Mercado Libre':[{date:'2026-06-30',text:'Preparar comparativa vs competidor',role:'Preventas'}],
+  'Naranja X':[{date:'2026-07-10',text:'Onboarding kickoff con CS',role:'Customer Success'}],
+};
+/* detalle declarado de cada elemento MEDDPICC (ficticio) */
+const MEDD_DETAIL={
+  'Telecom Argentina':{M:'Reducir 40% el tiempo de cierres y -25% en incidentes operativos.',E:'Gabriel Sosa — CIO.',D:'Integración con el stack actual, soporte 24/7 y cumplimiento regulatorio.',I:'Cierres manuales que consumen ~40 h/mes del equipo.',P:'Compra vía Compras con aprobación del comité de IT.',C:'Marina López — Gerente de Operaciones, impulsa el proyecto internamente.',Co:'Evaluaron una solución in-house; descartada por costo de mantenimiento.'},
+  'BBVA Argentina':{M:'Mejorar los tiempos de respuesta de TI en 35%.',E:'Florencia Díaz — CTO.',D:'Facilidad de adopción y soporte local.',I:'Demoras en la operación de TI.',P:'Aprobación del presupuesto anual.',C:'Hernán Aguirre — Gerente de Infraestructura, champion del proyecto.'},
+  'Banco Nación':{M:'Reducir incidentes en un 20%.',D:'Soporte y cumplimiento normativo del sector público.',I:'Incidentes recurrentes en producción.',C:'Lucía Romero — Jefa de Operaciones, actúa como champion.'},
+  'Mercado Libre':{M:'ROI objetivo en 6 meses; -30% en tareas manuales.',E:'Nicolás Ferreyra — VP de Engineering.',D:'Diferenciación técnica y escalabilidad.',Dp:'Decisión del comité técnico junto al sponsor.',I:'Procesos manuales que no escalan al ritmo del negocio.',P:'Orden de compra tras aprobación del comité.',C:'Sofía Castro — Tech Lead, vende internamente por nuestra solución.',Co:'Competidor X; se define por criterios técnicos.'},
+  'YPF':{I:'Posible necesidad de observabilidad; aún sin cuantificar.'},
+  'Banco Supervielle':{M:'-25% en tiempos de operación.',D:'Integración con su core bancario.',I:'Operaciones lentas en los cierres.',P:'Compra estándar anual.',C:'Carla Núñez — Gerente de Riesgo Tecnológico, interesada.'},
+  'ANSES':{D:'Criterios en definición con el área técnica.',I:'Falta de visibilidad sobre la operación.',C:'Natalia Ríos — Coord. de Sistemas, interesada en avanzar.'},
+  'Banco Galicia':{M:'Reducir 30% el tiempo de los procesos.',E:'Tomás Bravo — Gerente de IT.',D:'Integración y soporte.',I:'Procesos manuales lentos.',P:'Compra estándar anual.',C:'Agustina Molina — Líder de Plataformas, champion.'},
+  'Arcor':{M:'-20% en incidentes operativos.',D:'Soporte y cumplimiento.',I:'Incidentes recurrentes.',C:'Lorena Vidal — Jefa de TI, champion vía partner.'},
+  'Naranja X':{M:'Disponibilidad 99,9% y -20% en costos operativos.',E:'Julián Paz — CTO.',D:'Time-to-value y escalabilidad.',Dp:'Aprobación directa del CTO; proceso ágil.',I:'Caídas operativas que afectan el SLA con clientes.',P:'Contrato anual estándar.',C:'Líder de plataforma, champion fuerte.',Co:'Sin competencia activa; compite con el status quo.'},
+  'Banco Macro':{M:'Reducir 35% los tiempos de TI.',E:'Esteban Ortiz — Gerente de Sistemas.',D:'Robustez y soporte.',Dp:'Comité de inversión.',I:'Demoras operativas en TI.',P:'Aprobación del presupuesto anual.',C:'Líder de TI, champion del proyecto.',Co:'Competidor Y en evaluación.'},
+  'Farmacity':{M:'Mejorar visibilidad y -25% en MTTR.',D:'Facilidad de adopción.',I:'Falta de observabilidad end-to-end.',P:'Compra estándar.',C:'Romina Acosta — Gerente de IT, champion.'},
+};
+let ALL_DEALS=BASE.map(d=>({...d,history:HIST[d.acct]||[],pending:PEND[d.acct]||[],mdetail:MEDD_DETAIL[d.acct]||{}}));
+let DEALS=ALL_DEALS.filter(d=>d.owner===selectedSeller);
 
 /* ===== helpers ===== */
 const SELF=['auto'];
@@ -323,6 +446,7 @@ const RANK={red:0,amber:1,green:2};
 const fmtUSD=n=>'$'+(n/1000).toLocaleString('en-US',{maximumFractionDigits:0})+'K';
 const fmtUSDfull=n=>'$'+n.toLocaleString('en-US');
 const colorOf=s=>s==='green'?'var(--green)':s==='amber'?'var(--amber)':'var(--red)';
+const stBg=s=>s==='green'?'var(--green-dim)':s==='amber'?'var(--amber-dim)':'var(--red-dim)';
 const health=d=>Object.values(d.whys).reduce((w,v)=>RANK[v]<RANK[w]?v:w,'green');
 const isOpen=d=>STAGE_OPEN.includes(d.stage);
 const isOverdue=iso=>new Date(iso)<CONFIG.today;
@@ -364,24 +488,24 @@ function renderKPIs(){
 function polar(cx,cy,r,deg){const a=(deg-180)*Math.PI/180;return [cx+r*Math.cos(a),cy+r*Math.sin(a)];}
 function arc(cx,cy,r,a0,a1){const[x0,y0]=polar(cx,cy,r,a0),[x1,y1]=polar(cx,cy,r,a1);const large=(a1-a0)>180?1:0;return `M ${x0} ${y0} A ${r} ${r} 0 ${large} 1 ${x1} ${y1}`;}
 function renderGauge(){
-  const W=300,H=176,cx=150,cy=158,r=120,MAX=5;
+  const W=270,H=160,cx=135,cy=142,r=102,MAX=5;
   const toDeg=v=>Math.max(0,Math.min(MAX,v))/MAX*180;
-  const b=CONFIG.coverageBands,needle=toDeg(coverage),[nx,ny]=polar(cx,cy,r-8,needle);
-  const svg=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:300px" role="img" aria-label="Coverage ${coverage.toFixed(1)}x">
-    <path d="${arc(cx,cy,r,0,180)}" stroke="var(--surface-3)" stroke-width="16" fill="none" stroke-linecap="round"/>
-    <path d="${arc(cx,cy,r,0,toDeg(b.red))}" stroke="var(--red)" stroke-width="16" fill="none"/>
-    <path d="${arc(cx,cy,r,toDeg(b.red),toDeg(b.green))}" stroke="var(--amber)" stroke-width="16" fill="none"/>
-    <path d="${arc(cx,cy,r,toDeg(b.green),180)}" stroke="var(--green)" stroke-width="16" fill="none" stroke-linecap="round"/>
-    ${[b.red,b.green].map(v=>{const[tx,ty]=polar(cx,cy,r-26,toDeg(v));return `<text x="${tx}" y="${ty}" fill="var(--muted)" font-family="var(--mono)" font-size="11" text-anchor="middle" dominant-baseline="middle">${v}x</text>`}).join('')}
-    <line x1="${cx}" y1="${cy}" x2="${nx}" y2="${ny}" stroke="${colorOf(covState)}" stroke-width="3" stroke-linecap="round"/>
-    <circle cx="${cx}" cy="${cy}" r="6" fill="${colorOf(covState)}"/></svg>`;
+  const b=CONFIG.coverageBands,col=colorOf(covState);
+  const [mx,my]=polar(cx,cy,r,toDeg(coverage));
+  const notch=v=>{const[ax,ay]=polar(cx,cy,r-9,toDeg(v)),[bx,by]=polar(cx,cy,r+9,toDeg(v));return `<line x1="${ax}" y1="${ay}" x2="${bx}" y2="${by}" stroke="var(--ink)" stroke-width="3"/>`;};
+  const svg=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:280px" role="img" aria-label="Coverage ${coverage.toFixed(1)}x">
+    <path d="${arc(cx,cy,r,0,180)}" stroke="var(--surface-3)" stroke-width="13" fill="none" stroke-linecap="round"/>
+    <path d="${arc(cx,cy,r,0,Math.max(toDeg(coverage),0.6))}" stroke="${col}" stroke-width="13" fill="none" stroke-linecap="round"/>
+    ${notch(b.red)}${notch(b.green)}
+    <circle cx="${mx}" cy="${my}" r="8" fill="${col}" stroke="var(--surface)" stroke-width="3"/>
+    <text x="${cx}" y="${cy-28}" text-anchor="middle" fill="${col}" font-family="var(--mono)" font-weight="700" font-size="38">${coverage.toFixed(1)}x</text>
+    <text x="${cx}" y="${cy-7}" text-anchor="middle" fill="var(--muted)" font-family="var(--body)" font-size="10.5" letter-spacing=".14em">COVERAGE</text></svg>`;
   document.getElementById('gauge').innerHTML=svg+
-    `<div class="gauge-read" style="color:${colorOf(covState)}">${coverage.toFixed(1)}x</div>
-     <div class="gauge-sub">${covLabel} · objetivo ≥ ${CONFIG.coverageBands.green}x</div>
+    `<div class="gauge-sub">${covLabel} · objetivo ≥ ${b.green}x</div>
      <div class="gauge-legend">
-       <span><i class="dot" style="background:var(--red)"></i>&lt;${CONFIG.coverageBands.red}x</span>
-       <span><i class="dot" style="background:var(--amber)"></i>${CONFIG.coverageBands.red}–${CONFIG.coverageBands.green}x</span>
-       <span><i class="dot" style="background:var(--green)"></i>≥${CONFIG.coverageBands.green}x</span></div>
+       <span class="lg" style="background:var(--red-dim);color:var(--red)">&lt;${b.red}x</span>
+       <span class="lg" style="background:var(--amber-dim);color:var(--amber)">${b.red}–${b.green}x</span>
+       <span class="lg" style="background:var(--green-dim);color:var(--green)">≥${b.green}x</span></div>
      <div class="gap-note">Pipe abierto <b>${fmtUSD(pipeTotal)}</b> ÷ quota <b>${fmtUSD(CONFIG.quota)}</b></div>`;
 }
 
@@ -398,7 +522,7 @@ function renderBoard(){
 }
 function cardHTML(d,idx){
   const h=health(d),over=isOverdue(d.nsDate);
-  const whys=Object.keys(WHY_SHORT).map(k=>`<span class="why" data-why="${k}" data-st="${d.whys[k]}"><i class="dot" style="background:${colorOf(d.whys[k])}"></i>${WHY_SHORT[k]}</span>`).join('');
+  const whys=Object.keys(WHY_SHORT).map(k=>`<span class="why" data-why="${k}" data-st="${d.whys[k]}" style="background:${stBg(d.whys[k])};color:${colorOf(d.whys[k])}">${WHY_SHORT[k]}</span>`).join('');
   return `<div class="card" data-idx="${idx}" tabindex="0" role="button">
     <i class="dot health" style="background:${colorOf(h)}"></i>
     <div class="acct">${esc(d.acct)}</div><div class="prod">${esc(d.prod)}</div>
@@ -463,21 +587,50 @@ function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t
 
 /* ===== detalle de oportunidad + acciones ===== */
 const MP_FULL={M:'Metrics',E:'Economic buyer',D:'Decision criteria',Dp:'Decision process',I:'Identify pain',P:'Paper process',C:'Champion',Co:'Competition'};
+const MEDD_Q={M:'Métricas declaradas',E:'Economic buyer',D:'Criterios de decisión',Dp:'Proceso de decisión',I:'Dolor identificado',P:'Proceso de compra (paper)',C:'Champion',Co:'Competencia'};
+const TL_ICON={meeting:'🗓',call:'📞',email:'✉',whatsapp:'💬',material:'📎',note:'📝',demo:'▶',proposal:'📄'};
+function historyHTML(d){
+  const pend=[{date:d.nsDate,text:d.next,role:d.role,primary:true}]
+    .concat((d.pending||[]).map((p,i)=>({...p,pi:i})))
+    .sort((a,b)=>new Date(a.date)-new Date(b.date));
+  const done=(d.history||[]).slice().sort((a,b)=>new Date(b.date)-new Date(a.date));
+  const pendRows=pend.map(p=>{const over=isOverdue(p.date);
+    const ref=p.primary?'data-prim="1"':`data-pi="${p.pi}"`;
+    return `<div class="tl-item"><i class="tl-dot pend"></i><div class="tl-body">
+      <div class="tl-top"><span>${esc(p.text)}</span><span class="ns-date${over?' overdue':''}">${fmtDate(p.date)}</span></div>
+      <div class="tl-meta"><span class="role">${esc(p.role||d.role)}</span> · pendiente</div>
+      <div class="tl-actions">
+        <button class="tl-ab" data-pact="email" ${ref}>✉ Email</button>
+        <button class="tl-ab" data-pact="material" ${ref}>📎 Material</button>
+        <button class="tl-ab" data-pact="wa" ${ref}>💬 WhatsApp</button>
+        <button class="tl-ab done" data-pact="done" ${ref}>✓ Realizada</button>
+      </div></div></div>`;}).join('');
+  const doneRows=done.length?done.map(h=>`<div class="tl-item"><i class="tl-dot done"></i><div class="tl-body">
+      <div class="tl-top"><span>${TL_ICON[h.type]||'•'} ${esc(h.text)}</span><span class="ns-date">${fmtDate(h.date)}</span></div>
+      ${h.actor?`<div class="tl-meta"><span class="role">${esc(h.actor)}</span></div>`:''}</div></div>`).join('')
+    :`<div class="empty">Sin acciones registradas todavía.</div>`;
+  return `<div class="block"><div class="ttl">Acciones pendientes</div><div class="timeline">${pendRows}</div></div>
+    <div class="block"><div class="ttl">Acciones realizadas (${done.length})</div><div class="timeline">${doneRows}</div></div>`;
+}
 document.getElementById('board').addEventListener('click',e=>{const c=e.target.closest('.card');if(c)openCard(+c.dataset.idx);});
 document.getElementById('board').addEventListener('keydown',e=>{const c=e.target.closest('.card');if(c&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openCard(+c.dataset.idx);}});
+let curIdx=null;
 function openCard(idx){
+  curIdx=idx;
   const d=DEALS[idx];
   document.getElementById('cdTitle').textContent=d.acct;
   document.getElementById('cdSub').textContent=`${d.prod} · ${fmtUSDfull(d.acv)} · ${d.stage}`;
   const whyHTML=Object.keys(WHY_LABELS).map(k=>{const st=d.whys[k];
     return `<div class="whyrow"><i class="dot" style="background:${colorOf(st)};margin-top:5px"></i><div><span class="ql">${WHY_LABELS[k].code}</span><small>${WHY_LABELS[k].tip[st]}</small></div></div>`;}).join('');
   const mp=d.meddpicc||{};
-  const mpHTML=Object.keys(MP_FULL).map(k=>`<div class="mp"><span class="lt">${k}</span><i class="dot" style="background:${mp[k]?'var(--green)':'var(--line-2)'}"></i>${MP_FULL[k]}</div>`).join('');
+  const mpHTML=Object.keys(MP_FULL).map(k=>{const ok=mp[k]?1:0;
+    return `<div class="mp${ok?' done':''}" ${ok?`data-mk="${k}"`:''}><span class="lt">${k}</span><i class="dot" style="background:${ok?'var(--green)':'var(--line-2)'}"></i>${MP_FULL[k]}</div>`;}).join('');
   document.getElementById('cdBody').innerHTML=`
     <div class="block"><div class="ttl">Salud · 3 Whys (eslabón más débil)</div>${whyHTML}</div>
-    <div class="block"><div class="ttl">MEDDPICC</div><div class="meddpicc">${mpHTML}</div></div>
-    <div class="block"><div class="ttl">Next step</div><p>${esc(d.next)}</p>
-      <div class="nmeta"><span class="role">${esc(d.role)}</span><span class="ns-date${isOverdue(d.nsDate)?' overdue':''}">${fmtDate(d.nsDate)}</span></div></div>
+    <div class="block"><div class="ttl">MEDDPICC <span style="text-transform:none;letter-spacing:0;color:var(--muted-2)">· tocá una letra en verde</span></div>
+      <div class="meddpicc">${mpHTML}</div>
+      <div class="mp-detail" id="mpDetail">Tocá una letra en verde para ver qué se declaró.</div></div>
+    ${historyHTML(d)}
     <div class="block"><div class="ttl">Acciones</div><div class="actions">
       <button class="btn sm" data-act="email" data-idx="${idx}">✉ Email al asignado</button>
       <button class="btn ghost sm" data-act="material" data-idx="${idx}">📎 Enviar material</button>
@@ -486,11 +639,37 @@ function openCard(idx){
   openOvl('cardOvl');
 }
 document.getElementById('cdBody').addEventListener('click',e=>{
+  const mk=e.target.closest('[data-mk]');
+  if(mk){const d=DEALS[curIdx];const k=mk.dataset.mk;
+    document.querySelectorAll('#cdBody .mp').forEach(x=>x.classList.remove('sel'));mk.classList.add('sel');
+    const txt=(d.mdetail&&d.mdetail[k])?d.mdetail[k]:'Declarado — sin detalle cargado.';
+    document.getElementById('mpDetail').innerHTML=`<b>${MEDD_Q[k]}</b><p>${esc(txt)}</p>`;
+    return;}
+  const p=e.target.closest('[data-pact]');
+  if(p){const d=DEALS[curIdx];const act=p.dataset.pact;
+    if(act==='email'){closeOvl();composeEmail(d);}
+    else if(act==='wa'){closeOvl();composeWA(d,null);}
+    else if(act==='material'){closeOvl();openMaterials(d);}
+    else if(act==='done'){markDone(d,p);}
+    return;}
   const b=e.target.closest('[data-act]');if(!b)return;const d=DEALS[+b.dataset.idx];
   if(b.dataset.act==='email')composeEmail(d);
   if(b.dataset.act==='wa')composeWA(d,null);
   if(b.dataset.act==='material')openMaterials(d);
 });
+function markDone(d,btn){
+  const today=CONFIG.today.toISOString().slice(0,10);
+  d.history=d.history||[];
+  if(btn.hasAttribute('data-prim')){
+    d.history.push({date:today,type:'note',text:d.next,actor:d.role});
+    d.next='Sin próximo paso definido';d.nsDate=today;
+  }else{
+    const i=+btn.getAttribute('data-pi');const item=(d.pending||[])[i];
+    if(item){d.history.push({date:today,type:'note',text:item.text,actor:item.role||d.role});d.pending.splice(i,1);}
+  }
+  toast('Acción marcada como realizada.');
+  renderAll();openCard(curIdx);
+}
 
 /* ===== compose (email / whatsapp) ===== */
 let cp={mode:'email',deal:null,material:null};
@@ -507,7 +686,7 @@ function composeEmail(d){
   document.getElementById('cpSub').textContent=`Tarea de ${d.acct} → ${d.role}`;
   const to=ROLE_EMAIL[d.role]||'equipo@miempresa.com';
   const subj=`[${d.acct}] ${d.next}`;
-  const body=`Hola,\n\nTe paso contexto de la oportunidad ${d.acct} (${d.prod}, ${fmtUSDfull(d.acv)} ACV, etapa ${d.stage}).\n\nNext step: ${d.next}\nFecha objetivo: ${fmtDate(d.nsDate)}\nSalud (3 Whys): ¿por qué hacer algo? ${d.whys.anything} · ¿por qué ahora? ${d.whys.now} · ¿por qué BMC? ${d.whys.bmc}.\n\n¿Podés tomar esta acción y avisarme cuando esté?\n\nGracias.`;
+  const body=`Hola,\n\nTe paso contexto de la oportunidad ${d.acct} (${d.prod}, ${fmtUSDfull(d.acv)} ACV, etapa ${d.stage}).\n\nNext step: ${d.next}\nFecha objetivo: ${fmtDate(d.nsDate)}\nSalud (3 Whys): ¿por qué hacer algo? ${d.whys.anything} · ¿por qué ahora? ${d.whys.now} · ¿por qué nosotros? ${d.whys.bmc}.\n\n¿Podés tomar esta acción y avisarme cuando esté?\n\nGracias.`;
   document.getElementById('cpFields').innerHTML=`
     <label class="fld">Para</label><input class="inp" id="cpTo" value="${esc(to)}"/>
     <label class="fld">Asunto</label><input class="inp" id="cpSubj" value="${esc(subj)}"/>
@@ -519,7 +698,7 @@ function composeWA(d,material){
   cp={mode:'wa',deal:d,material:material||(cp.material&&cp.deal===d?cp.material:null)};cp.deal=d;
   document.getElementById('cpTitle').textContent='WhatsApp al cliente';
   document.getElementById('cpSub').textContent=`${d.cliente} · +${d.tel}`;
-  const body=`Hola, ¿cómo estás? Soy A. Vendedor. Quería retomar nuestra conversación sobre ${d.prod} para ${d.acct.split('·').pop().trim()} y ver cómo seguimos los próximos pasos.`;
+  const body=`Hola, ¿cómo estás? Soy ${selectedSeller}. Quería retomar nuestra conversación sobre ${d.prod} para ${d.acct} y ver cómo seguimos los próximos pasos.`;
   document.getElementById('cpFields').innerHTML=`
     <label class="fld">Para (cliente)</label><input class="inp" id="cpTo" value="+${esc(d.tel)}"/>
     <label class="fld">Mensaje</label><textarea class="ta" id="cpBody">${esc(body)}</textarea>`;
@@ -586,13 +765,16 @@ document.getElementById('aiBtn').onclick=()=>{
   const weakKey=Object.keys(focus.whys).find(k=>focus.whys[k]===health(focus));
   document.getElementById('aiTitle').textContent='Next step + brief sugeridos';
   document.getElementById('aiBody').innerHTML=`
+    <div class="block" style="border-color:var(--amber);background:var(--amber-dim)">
+      <div class="ttl" style="color:var(--amber)">⚠ Esto es una maqueta</div>
+      <p style="font-size:12.5px;color:var(--text)">El ejemplo de abajo es un texto <b>fijo</b>, no generado en vivo: ilustra cómo se vería la función. El asistente que genera de verdad vive <b>por fuera</b> del tablero (un GPT o un Proyecto de Claude), porque conectar una IA real necesita un backend con clave de API que no puede ir en un sitio estático.</p></div>
     <div class="block"><div class="ttl">Oportunidad en foco · ${esc(focus.acct)}</div>
       <p style="color:var(--muted)">El asistente prioriza el deal con el Why más débil: <b style="color:${colorOf(health(focus))}">${WHY_LABELS[weakKey].code}</b>.</p></div>
-    <div class="block"><div class="ttl">Next step propuesto</div>
+    <div class="block"><div class="ttl">Next step propuesto (ejemplo)</div>
       <p>Validar con el sponsor el <b>compelling event</b>: si no hay fecha que fuerce la decisión, el deal no debería avanzar de etapa todavía.</p></div>
-    <div class="block"><div class="ttl">Brief para el ecosistema → Value Engineer</div>
+    <div class="block"><div class="ttl">Brief para el ecosistema → Value Engineer (ejemplo)</div>
       <p>"Necesito un caso de negocio para ${esc(focus.acct)} (${fmtUSD(focus.acv)} ACV). El dolor está identificado pero falta cuantificarlo. ¿Podés armar 2–3 métricas de impacto y un rango de ROI?"</p></div>
-    <div class="note"><b style="color:var(--accent)">Cómo funciona:</b> esta capa la resuelve un asistente generativo (un GPT/Proyecto de Claude). La IA sugiere; vos revisás y aprobás antes de asignar.</div>`;
+    <div class="note"><b style="color:var(--accent)">Dónde está el cerebro real:</b> las instrucciones del asistente generativo están en la carpeta <code>cerebro/</code> del repositorio, listas para pegar en un GPT o Proyecto de Claude. La IA sugiere; vos revisás y aprobás antes de asignar.</div>`;
   openOvl('aiOvl');
 };
 
@@ -626,14 +808,16 @@ function importCSV(text){
     return{acct:get(r,'cuenta')||'Sin nombre',prod:get(r,'producto')||'—',
       acv:Number(String(get(r,'acv')).replace(/[^\d.-]/g,''))||0,stage:stg,
       origin:(get(r,'origen')||'auto').toLowerCase(),close:get(r,'cierre')||'2026-12-31',
-      whys:{anything:mapWhy(get(r,'why_anything')),now:mapWhy(get(r,'why_now')),bmc:mapWhy(get(r,'why_bmc'))},
+      whys:{anything:mapWhy(get(r,'why_anything')),now:mapWhy(get(r,'why_now')),bmc:mapWhy(get(r,'why_nosotros'))},
       next:get(r,'next_step')||'Definir próximo paso',nsDate:get(r,'ns_fecha')||'2026-12-31',
       role:get(r,'responsable')||'Account Manager',cliente:get(r,'cliente')||'Contacto',
       tel:String(get(r,'telefono')).replace(/[^\d]/g,'')||'5491100000000',
       sent:get(r,'respuesta_enviada')||null,meddpicc:{}};
   });
   if(!out.length)throw new Error('sin filas');
-  DEALS=out;renderAll();
+  out.forEach(o=>{o.owner=selectedSeller;o.history=[];o.pending=[];});
+  ALL_DEALS=ALL_DEALS.filter(d=>d.owner!==selectedSeller).concat(out);
+  DEALS=ALL_DEALS.filter(d=>d.owner===selectedSeller);renderAll();
   document.getElementById('srcPill').innerHTML='Fuente · <b>CSV</b>';
   toast(`Importadas ${out.length} oportunidades desde el CSV.`);
 }
@@ -645,8 +829,20 @@ document.getElementById('csvInput').addEventListener('change',e=>{
   e.target.value='';
 });
 
+/* ===== selector de vendedor ===== */
+function applySeller(){
+  const s=SELLERS.find(x=>x.name===selectedSeller)||SELLERS[0];
+  CONFIG.quota=s.quota;
+  DEALS=ALL_DEALS.filter(d=>d.owner===selectedSeller);
+  renderAll();
+}
+const sellerSel=document.getElementById('sellerSel');
+sellerSel.innerHTML=SELLERS.map(s=>`<option value="${esc(s.name)}"${s.name===selectedSeller?' selected':''}>${esc(s.name)}</option>`).join('');
+sellerSel.onchange=()=>{selectedSeller=sellerSel.value;
+  document.getElementById('srcPill').innerHTML='Fuente · <b>demo</b>';applySeller();};
+
 /* init */
-renderAll();
+applySeller();
 </script>
 </body>
 </html>
