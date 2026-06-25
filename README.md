@@ -16,7 +16,7 @@ Una única pantalla —un "command center"— que concentra:
 
 - **Coverage en vivo**, con un semáforo contra el objetivo de cobertura (🔴 <3x · 🟡 3–4x · 🟢 ≥4x).
 - **Pipeline en formato Kanban** por etapa, con el ACV de cada oportunidad.
-- **Los 3 Whys** de cada deal (*¿por qué hacer algo?*, *¿por qué ahora?*, *¿por qué BMC?*) con semáforo, bajo la regla del **eslabón más débil**.
+- **Los 3 Whys** de cada deal (*¿por qué hacer algo?*, *¿por qué ahora?*, *¿por qué nosotros?*) con semáforo, bajo la regla del **eslabón más débil**.
 - **Calificación MEDDPICC** en el detalle de cada oportunidad.
 - **Next steps** ordenados por fecha, resaltando los vencidos.
 - **Tareas agrupadas por rol** del ecosistema.
@@ -80,7 +80,7 @@ El archivo debe tener una fila de encabezados con estas columnas (ver `datos-eje
 | `responsable` | Rol asignado | Account Manager, Preventas, Value Engineer, Marketing, Customer Success, Partner, BDR |
 | `why_anything` | ¿Por qué hacer algo? | verde, amarillo, rojo |
 | `why_now` | ¿Por qué ahora? | verde, amarillo, rojo |
-| `why_bmc` | ¿Por qué BMC? | verde, amarillo, rojo |
+| `why_nosotros` | ¿Por qué nosotros? | verde, amarillo, rojo |
 | `cliente` | Nombre del contacto | texto |
 | `telefono` | Teléfono del cliente (solo dígitos) | número |
 | `respuesta_enviada` | Fecha en que se le escribió (para "respuestas pendientes") | AAAA-MM-DD u vacío |
