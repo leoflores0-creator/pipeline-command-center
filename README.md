@@ -1,10 +1,8 @@
 # Pipeline Command Center
 
-# Pipeline Command Center
-
 🔗 **App en vivo:** https://leoflores0-creator.github.io/pipeline-command-center/
 
-> Tablero para la **gestión, seguimiento y activación del pipeline de ventas** de un Account Manager de cuentas estratégicas: Coverage contra quota, next steps por oportunidad, asignación de tareas al ecosistema (preventas, value engineering, marketing, customer success, partners y BDR) y activación de comunicaciones con el cliente (email, material de marketing y WhatsApp).
+> Tablero para la **gestión, seguimiento y activación del pipeline de ventas** de un Account Manager de cuentas estratégicas: Coverage contra quota, next steps por oportunidad, histórico de cada cuenta, calificación (MEDDPICC y los 3 Whys), asignación de tareas al ecosistema y activación de comunicaciones con el cliente (email, materiales de marketing y WhatsApp).
 
 **Trabajo Final Integrador** — Diplomatura en IA Aplicada a Entornos Digitales de Gestión · FCE-UBA · Cohorte 2026
 
@@ -12,26 +10,23 @@
 
 ## El problema
 
-En la venta enterprise, el cuello de botella no siempre es *generar* pipeline, sino **gobernarlo**: saber en todo momento si estás cubierto (el Coverage debe ser un múltiplo de la quota), no perder el *next step* de ninguna oportunidad y coordinar a las muchas personas que intervienen en cada deal. Esa información suele vivir desperdigada entre el CRM, planillas sueltas y la cabeza del vendedor.
+En la venta enterprise, el cuello de botella no siempre es *generar* pipeline, sino **darle progreso**: saber en todo momento si se está cubierto (el Coverage debe ser un múltiplo de la quota), no perder el *next step* de ninguna oportunidad y coordinar a las muchas personas que intervienen en cada deal. Esa información suele vivir dispersa entre el CRM, planillas sueltas y la cabeza del vendedor, y cuando no está visible el pipeline se diluye: se pierde el momentum, los mails se responden tarde, los compromisos no se cumplen y las tareas asignadas al ecosistema se pierden.
 
 ## La solución
 
-Una única pantalla —un "command center"— que concentra:
+Una única pantalla —un *command center*— que concentra:
 
-- **Coverage en vivo**, con un semáforo contra el objetivo de cobertura (🔴 <3x · 🟡 3–4x · 🟢 ≥4x).
-- **Pipeline en formato Kanban** por etapa, con el ACV de cada oportunidad.
-- **Los 3 Whys** de cada deal (*¿por qué hacer algo?*, *¿por qué ahora?*, *¿por qué nosotros?*) con semáforo, bajo la regla del **eslabón más débil**.
-- **Calificación MEDDPICC** en el detalle de cada oportunidad.
-- **Next steps** ordenados por fecha, resaltando los vencidos.
-- **Tareas agrupadas por rol** del ecosistema.
-- **Importación desde Salesforce** vía reporte CSV (sin backend, todo en el navegador).
-- **Email al asignado**: genera un borrador con el contexto del deal y abre tu cliente de correo.
-- **Biblioteca de materiales de MKT** (whitepapers, datasheets, videos, casos de éxito) para adjuntar a las comunicaciones.
-- **WhatsApp click-to-chat**: abre WhatsApp con un mensaje personalizado y el link al material.
-- **Respuestas pendientes**: seguimiento de los clientes que aún no respondieron, con semáforo por antigüedad.
-- Una **capa de IA generativa** que sugiere next steps y redacta briefs para el ecosistema (la IA propone; la persona revisa y aprueba).
+- **Coverage en vivo** contra la quota, con semáforo y objetivo con colchón (🔴 <3x · 🟡 3–4x · 🟢 ≥4x), y la distinción entre pipe total y pipe generado por el vendedor.
+- **Pipeline en formato Kanban** por etapa, con el valor (ACV) de cada oportunidad.
+- **Calificación por los 3 Whys** (¿por qué hacer algo?, ¿por qué ahora?, ¿por qué nosotros?) con semáforo y la regla del eslabón más débil.
+- **MEDDPICC con detalle**: al pinchar cada elemento completado se ve qué se declaró (métricas, economic buyer, champion, etc., con nombre y cargo del contacto).
+- **Histórico de cada oportunidad**: acciones realizadas en línea de tiempo y acciones pendientes **accionables** (disparan email, material o WhatsApp, o se marcan como realizadas).
+- **Paneles de next steps** (con los vencidos resaltados) y de **respuestas pendientes** del cliente (con semáforo por antigüedad).
+- **Asignación y seguimiento de tareas por rol del ecosistema** (preventas, value engineering, marketing, customer success, partners y BDR).
+- **Capa de activación**: importación de datos por CSV (reporte de Salesforce), borradores de email al asignado, biblioteca de materiales de marketing y mensajes de WhatsApp *click-to-chat*.
+- **Selector de vendedores** (vista por cartera) y un **asistente de IA** (demostración del “cerebro”) que sugiere next steps y briefs.
 
-> **Control humano por diseño.** La maqueta no envía nada de forma automática: prepara los borradores (email, WhatsApp) y la persona los revisa y envía. Es una decisión deliberada de seguridad y control, no una limitación.
+> **Control humano por diseño.** La maqueta no envía nada de forma automática: prepara los borradores y la persona los revisa y envía. Es una decisión deliberada de seguridad y control.
 
 ## Para quién es
 
@@ -41,19 +36,16 @@ Para un Account Manager (o cualquier rol comercial con quota) que necesita clari
 
 ## Cómo se usa
 
-1. Abrí `index.html` en cualquier navegador (no requiere instalación, servidor ni base de datos).
-2. **Coverage:** el medidor central indica tu cobertura actual y si estás en zona segura.
-3. **Kanban:** recorré las oportunidades por etapa. Pasá el cursor sobre los semáforos de los *Whys* para ver el criterio de cada color. Hacé clic en una tarjeta para ver su detalle MEDDPICC y las acciones.
-4. **Importar CSV:** botón *Importar CSV* → seleccioná un reporte exportado de Salesforce (ver formato abajo). El tablero se reconstruye con esos datos.
-5. **Acciones por oportunidad** (dentro del detalle de cada tarjeta):
-   - *Email al asignado:* abre un borrador con el contexto del deal dirigido al rol responsable.
-   - *Enviar material:* abre la biblioteca de MKT y permite mandar el material por email o WhatsApp.
-   - *WhatsApp al cliente:* abre un mensaje personalizado listo para enviar.
-6. **Biblioteca MKT:** botón *Biblioteca MKT* para explorar y filtrar materiales por tipo.
-7. **Next steps / Respuestas pendientes:** paneles inferiores para el seguimiento; los vencidos y las respuestas demoradas aparecen en rojo.
-8. **Generar con IA:** muestra cómo el asistente generativo propone la próxima acción y un brief para el equipo.
+1. Abrí la [app en vivo](https://leoflores0-creator.github.io/pipeline-command-center/) (o `index.html` en cualquier navegador; no requiere instalación ni servidor).
+2. **Selector de vendedor** (arriba): cambiá de cartera; el Coverage, el Kanban y los paneles se recalculan.
+3. **Coverage:** el medidor central indica la cobertura actual y si se está en zona segura.
+4. **Kanban:** recorré las oportunidades por etapa. Pasá el cursor sobre los semáforos de los *Whys* para ver el criterio de cada color. Hacé clic en una tarjeta para ver su detalle.
+5. **Detalle de la oportunidad:** los 3 Whys, el MEDDPICC (tocá una letra en verde para ver qué se declaró), el histórico de acciones realizadas y las pendientes accionables.
+6. **Importar CSV:** botón *Importar CSV* → seleccioná un reporte exportado de Salesforce (ver formato abajo).
+7. **Acciones:** desde cada oportunidad podés generar un borrador de email al asignado, enviar material de marketing o un WhatsApp al cliente.
+8. **Generar con IA:** muestra cómo el asistente generativo propone el próximo paso y un brief (demostración del cerebro).
 
-> ⚠️ **Datos ficticios y anonimizados.** Cuentas, montos, contactos y teléfonos son inventados a modo de demostración. No contienen información comercial real.
+> ⚠️ **Datos ilustrativos.** Las empresas son reales, pero los contactos, montos y datos de pipeline son **ficticios**; los nombres de las personas son inventados y no corresponden a ejecutivos reales.
 
 ### Configuración
 
@@ -69,25 +61,29 @@ const CONFIG = {
 
 ### Formato del CSV (importación desde Salesforce)
 
-El archivo debe tener una fila de encabezados con estas columnas (ver `datos-ejemplo.csv`):
+El archivo debe tener una fila de encabezados con estas columnas (ver `datos-ejemplo.csv`): `cuenta`, `producto`, `acv`, `etapa`, `origen`, `cierre`, `next_step`, `ns_fecha`, `responsable`, `why_anything`, `why_now`, `why_nosotros`, `cliente`, `telefono`, `respuesta_enviada`. Los semáforos de los Whys aceptan `verde` / `amarillo` / `rojo`; las etapas son Prospección, Calificación, Validación, Propuesta, Negociación, Cierre; y las fechas van en formato AAAA-MM-DD.
 
-| Columna | Descripción | Valores |
-|---|---|---|
-| `cuenta` | Nombre de la cuenta/oportunidad | texto |
-| `producto` | Solución ofrecida | texto |
-| `acv` | Valor anual del contrato | número |
-| `etapa` | Etapa del pipeline | Prospección, Calificación, Validación, Propuesta, Negociación, Cierre |
-| `origen` | Fuente del lead | auto, marketing, bdr, partner |
-| `cierre` | Fecha estimada de cierre | AAAA-MM-DD |
-| `next_step` | Próxima acción | texto |
-| `ns_fecha` | Fecha del next step | AAAA-MM-DD |
-| `responsable` | Rol asignado | Account Manager, Preventas, Value Engineer, Marketing, Customer Success, Partner, BDR |
-| `why_anything` | ¿Por qué hacer algo? | verde, amarillo, rojo |
-| `why_now` | ¿Por qué ahora? | verde, amarillo, rojo |
-| `why_nosotros` | ¿Por qué nosotros? | verde, amarillo, rojo |
-| `cliente` | Nombre del contacto | texto |
-| `telefono` | Teléfono del cliente (solo dígitos) | número |
-| `respuesta_enviada` | Fecha en que se le escribió (para "respuestas pendientes") | AAAA-MM-DD u vacío |
+---
+
+## Arquitectura objetivo (en producción)
+
+La maqueta es la versión sin backend. En producción, **n8n** actúa como capa central de integración y automatización: sincroniza el pipeline con Salesforce, opera como backend del cerebro de IA (invoca la API de Claude) y, tras la aprobación del vendedor, ejecuta la activación por email, WhatsApp y el repositorio de marketing.
+
+![Arquitectura objetivo en producción](diagramas/arquitectura.png)
+
+### Flujos en n8n
+
+**Sincronización con Salesforce** — trae las oportunidades del CRM y actualiza la app de forma periódica.
+
+![Flujo n8n — Salesforce](diagramas/n8n-salesforce.png)
+
+**Cerebro de IA** — recibe las notas de la oportunidad, llama a la API de Claude con las instrucciones del asistente y devuelve next steps y briefs.
+
+![Flujo n8n — Cerebro](diagramas/n8n-cerebro.png)
+
+**Activación** — tras la aprobación humana, envía por email o WhatsApp, adjunta el material y registra la actividad en Salesforce.
+
+![Flujo n8n — Activación](diagramas/n8n-activacion.png)
 
 ---
 
@@ -95,9 +91,9 @@ El archivo debe tener una fila de encabezados con estas columnas (ver `datos-eje
 
 Al ser un sitio estático de un solo archivo, se publica en segundos:
 
-- **Netlify:** arrastrá la carpeta del proyecto a [app.netlify.com/drop](https://app.netlify.com/drop), o conectá este repositorio.
-- **Vercel:** importá el repositorio desde [vercel.com/new](https://vercel.com/new); detecta el `index.html` automáticamente.
-- **GitHub Pages:** activá Pages en *Settings → Pages → Branch: main*.
+- **GitHub Pages:** *Settings → Pages → Branch: main → /(root)*. (Es como está publicada la app en vivo.)
+- **Netlify:** arrastrá la carpeta a [app.netlify.com/drop](https://app.netlify.com/drop).
+- **Vercel:** importá el repositorio desde [vercel.com/new](https://vercel.com/new).
 
 ---
 
@@ -105,22 +101,17 @@ Al ser un sitio estático de un solo archivo, se publica en segundos:
 
 | Parte del proyecto | Herramienta | Rol |
 |---|---|---|
-| Diseño y código del tablero (front-end) | Claude (Anthropic) | Generación del HTML/CSS/JS bajo dirección del autor |
-| Capa generativa de next steps y briefs | GPT / Proyecto de Claude | Asistente que sugiere acciones; la decisión final es humana |
-| Ideación y estructura del trabajo | Modelo de IA generativa | Brainstorming del enfoque |
+| Diseño y código del tablero (front-end) | Claude (Anthropic) | Generación del HTML/CSS/JS bajo dirección del autor (vibe coding) |
+| Capa generativa de next steps y briefs | Proyecto de Claude (el “cerebro”) | Asistente que sugiere acciones; la decisión final es humana |
+| Versionado y publicación | GitHub + GitHub Pages | Historial del proceso y app en vivo |
 
-El detalle de prompts, decisiones y ajustes está documentado en el **informe en PDF** que acompaña a este repositorio. Las instrucciones del asistente generativo están versionadas en la carpeta `cerebro/`.
+Las instrucciones del asistente generativo están versionadas en la carpeta `cerebro/`. El detalle del proceso, los prompts y el análisis están en el **informe en PDF** que acompaña a la entrega.
 
 ---
 
 ## Versiones
 
-El proyecto se desarrolla de forma iterativa; el historial de *commits* refleja su evolución.
-
-- **v1** — Tablero funcional con Coverage, Kanban, 3 Whys, MEDDPICC, next steps y panel de ecosistema.
-- **v2** — Cerebro generativo (`cerebro/`): instrucciones y ejemplos del asistente.
-- **v3** — Importación CSV de Salesforce, email al asignado, biblioteca de materiales de MKT, WhatsApp click-to-chat y panel de respuestas pendientes (todo como maqueta sin backend).
-- *(próximas)* — Automatización real de envíos e integración en vivo vía n8n/APIs.
+El proyecto se desarrolló de forma iterativa; el historial de *commits* refleja su evolución: tablero funcional (Coverage, Kanban, 3 Whys, MEDDPICC) → cerebro generativo → capa de activación (CSV, email, materiales, WhatsApp) → histórico accionable y MEDDPICC con detalle → empresas reales y selector de vendedores → despersonalización y publicación en vivo.
 
 ---
 
@@ -128,12 +119,17 @@ El proyecto se desarrolla de forma iterativa; el historial de *commits* refleja 
 
 ```
 pipeline-command-center/
-├── index.html          # la app (v3)
-├── datos-ejemplo.csv   # CSV de ejemplo para la importación
+├── index.html              # la app
+├── datos-ejemplo.csv       # CSV de ejemplo para la importación
 ├── README.md
-└── cerebro/
-    ├── instrucciones.md
-    └── ejemplos-de-uso.md
+├── cerebro/
+│   ├── instrucciones.md
+│   └── ejemplos-de-uso.md
+└── diagramas/
+    ├── arquitectura.png
+    ├── n8n-salesforce.png
+    ├── n8n-cerebro.png
+    └── n8n-activacion.png
 ```
 
 ---
